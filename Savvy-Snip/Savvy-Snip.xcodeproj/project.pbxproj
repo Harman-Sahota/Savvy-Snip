@@ -7,28 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		519457712BBC8D670032FC69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519457702BBC8D670032FC69 /* AppDelegate.swift */; };
-		519457732BBC8D670032FC69 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519457722BBC8D670032FC69 /* SceneDelegate.swift */; };
-		519457752BBC8D670032FC69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519457742BBC8D670032FC69 /* ViewController.swift */; };
-		519457782BBC8D670032FC69 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 519457772BBC8D670032FC69 /* Base */; };
-		5194577A2BBC8D680032FC69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 519457792BBC8D680032FC69 /* Assets.xcassets */; };
-		5194577D2BBC8D680032FC69 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 5194577C2BBC8D680032FC69 /* Base */; };
+		5147314C2BC365B4003CCE21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5147314B2BC365B4003CCE21 /* AppDelegate.swift */; };
+		5147314E2BC365B4003CCE21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5147314D2BC365B4003CCE21 /* ViewController.swift */; };
+		514731502BC365B5003CCE21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5147314F2BC365B5003CCE21 /* Assets.xcassets */; };
+		514731532BC365B5003CCE21 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 514731522BC365B5003CCE21 /* Base */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		51483C392BBC934A00EBE9D1 /* Savvy-Snip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Savvy-Snip.entitlements"; sourceTree = "<group>"; };
-		5194576D2BBC8D670032FC69 /* Savvy-Snip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Savvy-Snip.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		519457702BBC8D670032FC69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		519457722BBC8D670032FC69 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		519457742BBC8D670032FC69 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		519457772BBC8D670032FC69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		519457792BBC8D680032FC69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5194577C2BBC8D680032FC69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		5194577E2BBC8D680032FC69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		514731482BC365B4003CCE21 /* Savvy-Snip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Savvy-Snip.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5147314B2BC365B4003CCE21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5147314D2BC365B4003CCE21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5147314F2BC365B5003CCE21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		514731522BC365B5003CCE21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		514731542BC365B5003CCE21 /* Savvy_Snip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Savvy_Snip.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		5194576A2BBC8D670032FC69 /* Frameworks */ = {
+		514731452BC365B4003CCE21 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -38,33 +33,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		519457642BBC8D670032FC69 = {
+		5147313F2BC365B4003CCE21 = {
 			isa = PBXGroup;
 			children = (
-				5194576F2BBC8D670032FC69 /* Savvy-Snip */,
-				5194576E2BBC8D670032FC69 /* Products */,
+				5147314A2BC365B4003CCE21 /* Savvy-Snip */,
+				514731492BC365B4003CCE21 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		5194576E2BBC8D670032FC69 /* Products */ = {
+		514731492BC365B4003CCE21 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5194576D2BBC8D670032FC69 /* Savvy-Snip.app */,
+				514731482BC365B4003CCE21 /* Savvy-Snip.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5194576F2BBC8D670032FC69 /* Savvy-Snip */ = {
+		5147314A2BC365B4003CCE21 /* Savvy-Snip */ = {
 			isa = PBXGroup;
 			children = (
-				51483C392BBC934A00EBE9D1 /* Savvy-Snip.entitlements */,
-				519457702BBC8D670032FC69 /* AppDelegate.swift */,
-				519457722BBC8D670032FC69 /* SceneDelegate.swift */,
-				519457742BBC8D670032FC69 /* ViewController.swift */,
-				519457762BBC8D670032FC69 /* Main.storyboard */,
-				519457792BBC8D680032FC69 /* Assets.xcassets */,
-				5194577B2BBC8D680032FC69 /* LaunchScreen.storyboard */,
-				5194577E2BBC8D680032FC69 /* Info.plist */,
+				5147314B2BC365B4003CCE21 /* AppDelegate.swift */,
+				5147314D2BC365B4003CCE21 /* ViewController.swift */,
+				5147314F2BC365B5003CCE21 /* Assets.xcassets */,
+				514731512BC365B5003CCE21 /* Main.storyboard */,
+				514731542BC365B5003CCE21 /* Savvy_Snip.entitlements */,
 			);
 			path = "Savvy-Snip";
 			sourceTree = "<group>";
@@ -72,13 +64,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5194576C2BBC8D670032FC69 /* Savvy-Snip */ = {
+		514731472BC365B4003CCE21 /* Savvy-Snip */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 519457812BBC8D680032FC69 /* Build configuration list for PBXNativeTarget "Savvy-Snip" */;
+			buildConfigurationList = 514731572BC365B5003CCE21 /* Build configuration list for PBXNativeTarget "Savvy-Snip" */;
 			buildPhases = (
-				519457692BBC8D670032FC69 /* Sources */,
-				5194576A2BBC8D670032FC69 /* Frameworks */,
-				5194576B2BBC8D670032FC69 /* Resources */,
+				514731442BC365B4003CCE21 /* Sources */,
+				514731452BC365B4003CCE21 /* Frameworks */,
+				514731462BC365B4003CCE21 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -86,25 +78,25 @@
 			);
 			name = "Savvy-Snip";
 			productName = "Savvy-Snip";
-			productReference = 5194576D2BBC8D670032FC69 /* Savvy-Snip.app */;
+			productReference = 514731482BC365B4003CCE21 /* Savvy-Snip.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		519457652BBC8D670032FC69 /* Project object */ = {
+		514731402BC365B4003CCE21 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1530;
 				TargetAttributes = {
-					5194576C2BBC8D670032FC69 = {
+					514731472BC365B4003CCE21 = {
 						CreatedOnToolsVersion = 15.3;
 					};
 				};
 			};
-			buildConfigurationList = 519457682BBC8D670032FC69 /* Build configuration list for PBXProject "Savvy-Snip" */;
+			buildConfigurationList = 514731432BC365B4003CCE21 /* Build configuration list for PBXProject "Savvy-Snip" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -112,63 +104,53 @@
 				en,
 				Base,
 			);
-			mainGroup = 519457642BBC8D670032FC69;
-			productRefGroup = 5194576E2BBC8D670032FC69 /* Products */;
+			mainGroup = 5147313F2BC365B4003CCE21;
+			productRefGroup = 514731492BC365B4003CCE21 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5194576C2BBC8D670032FC69 /* Savvy-Snip */,
+				514731472BC365B4003CCE21 /* Savvy-Snip */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		5194576B2BBC8D670032FC69 /* Resources */ = {
+		514731462BC365B4003CCE21 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5194577A2BBC8D680032FC69 /* Assets.xcassets in Resources */,
-				5194577D2BBC8D680032FC69 /* Base in Resources */,
-				519457782BBC8D670032FC69 /* Base in Resources */,
+				514731502BC365B5003CCE21 /* Assets.xcassets in Resources */,
+				514731532BC365B5003CCE21 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		519457692BBC8D670032FC69 /* Sources */ = {
+		514731442BC365B4003CCE21 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				519457752BBC8D670032FC69 /* ViewController.swift in Sources */,
-				519457712BBC8D670032FC69 /* AppDelegate.swift in Sources */,
-				519457732BBC8D670032FC69 /* SceneDelegate.swift in Sources */,
+				5147314E2BC365B4003CCE21 /* ViewController.swift in Sources */,
+				5147314C2BC365B4003CCE21 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		519457762BBC8D670032FC69 /* Main.storyboard */ = {
+		514731512BC365B5003CCE21 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				519457772BBC8D670032FC69 /* Base */,
+				514731522BC365B5003CCE21 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		5194577B2BBC8D680032FC69 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5194577C2BBC8D680032FC69 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		5194577F2BBC8D680032FC69 /* Debug */ = {
+		514731552BC365B5003CCE21 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -220,18 +202,18 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		519457802BBC8D680032FC69 /* Release */ = {
+		514731562BC365B5003CCE21 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -277,104 +259,93 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		519457822BBC8D680032FC69 /* Debug */ = {
+		514731582BC365B5003CCE21 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Savvy-Snip/Savvy-Snip.entitlements";
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = "Savvy-Snip/Savvy_Snip.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZV8A22X9K3;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Savvy-Snip/Info.plist";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
+					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "github.com-Harman-Sahota-.Savvy-Snip";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		519457832BBC8D680032FC69 /* Release */ = {
+		514731592BC365B5003CCE21 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Savvy-Snip/Savvy-Snip.entitlements";
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = "Savvy-Snip/Savvy_Snip.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZV8A22X9K3;
+				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Savvy-Snip/Info.plist";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
+					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "github.com-Harman-Sahota-.Savvy-Snip";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		519457682BBC8D670032FC69 /* Build configuration list for PBXProject "Savvy-Snip" */ = {
+		514731432BC365B4003CCE21 /* Build configuration list for PBXProject "Savvy-Snip" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5194577F2BBC8D680032FC69 /* Debug */,
-				519457802BBC8D680032FC69 /* Release */,
+				514731552BC365B5003CCE21 /* Debug */,
+				514731562BC365B5003CCE21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		519457812BBC8D680032FC69 /* Build configuration list for PBXNativeTarget "Savvy-Snip" */ = {
+		514731572BC365B5003CCE21 /* Build configuration list for PBXNativeTarget "Savvy-Snip" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				519457822BBC8D680032FC69 /* Debug */,
-				519457832BBC8D680032FC69 /* Release */,
+				514731582BC365B5003CCE21 /* Debug */,
+				514731592BC365B5003CCE21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 519457652BBC8D670032FC69 /* Project object */;
+	rootObject = 514731402BC365B4003CCE21 /* Project object */;
 }
