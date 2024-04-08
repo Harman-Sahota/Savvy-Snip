@@ -11,6 +11,7 @@
 		51BB1DD22BC36B24003DBC23 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1DD12BC36B24003DBC23 /* ContentView.swift */; };
 		51BB1DD42BC36B25003DBC23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51BB1DD32BC36B25003DBC23 /* Assets.xcassets */; };
 		51BB1DD72BC36B25003DBC23 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51BB1DD62BC36B25003DBC23 /* Preview Assets.xcassets */; };
+		51BB1DE32BC36D02003DBC23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51BB1DE22BC36D02003DBC23 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		51BB1DD32BC36B25003DBC23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		51BB1DD62BC36B25003DBC23 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		51BB1DD82BC36B25003DBC23 /* Savvy_Snip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Savvy_Snip.entitlements; sourceTree = "<group>"; };
+		51BB1DE22BC36D02003DBC23 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 		51BB1DCE2BC36B24003DBC23 /* Savvy-Snip */ = {
 			isa = PBXGroup;
 			children = (
+				51BB1DE22BC36D02003DBC23 /* LaunchScreen.storyboard */,
 				51BB1DCF2BC36B24003DBC23 /* Savvy_SnipApp.swift */,
 				51BB1DD12BC36B24003DBC23 /* ContentView.swift */,
 				51BB1DD32BC36B25003DBC23 /* Assets.xcassets */,
@@ -127,6 +130,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51BB1DE32BC36D02003DBC23 /* LaunchScreen.storyboard in Resources */,
 				51BB1DD72BC36B25003DBC23 /* Preview Assets.xcassets in Resources */,
 				51BB1DD42BC36B25003DBC23 /* Assets.xcassets in Resources */,
 			);
@@ -270,6 +274,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Savvy-Snip/Savvy_Snip.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -279,7 +284,10 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Savvy Snip";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -297,6 +305,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Savvy-Snip/Savvy_Snip.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -306,7 +315,10 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Savvy Snip";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
