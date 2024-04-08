@@ -2,8 +2,6 @@
 
 ![Savvy Snip Logo](logo.svg)
 
-**Note: Savvy Snip will only be available on macOS. iPhone mockups are for reference design purposes only. The web version is not guaranteed at this time, as our focus is on creating and perfecting the macOS app.**
-
 Welcome to Savvy Snip, your future go-to tool for storing, organizing, and accessing code snippets with ease. Whether you're a seasoned developer or just getting started, Savvy Snip is designed to streamline your workflow and boost your coding efficiency. Say goodbye to repetitive Google searches and hello to a seamless coding experience.
 
 ## Table of Contents
