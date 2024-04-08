@@ -12,6 +12,7 @@
 		51BB1DD42BC36B25003DBC23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51BB1DD32BC36B25003DBC23 /* Assets.xcassets */; };
 		51BB1DD72BC36B25003DBC23 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51BB1DD62BC36B25003DBC23 /* Preview Assets.xcassets */; };
 		51BB1DE32BC36D02003DBC23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51BB1DE22BC36D02003DBC23 /* LaunchScreen.storyboard */; };
+		51BB1DE52BC37981003DBC23 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1DE42BC37981003DBC23 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		51BB1DD62BC36B25003DBC23 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		51BB1DD82BC36B25003DBC23 /* Savvy_Snip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Savvy_Snip.entitlements; sourceTree = "<group>"; };
 		51BB1DE22BC36D02003DBC23 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		51BB1DE42BC37981003DBC23 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				51BB1DE22BC36D02003DBC23 /* LaunchScreen.storyboard */,
 				51BB1DCF2BC36B24003DBC23 /* Savvy_SnipApp.swift */,
 				51BB1DD12BC36B24003DBC23 /* ContentView.swift */,
+				51BB1DE42BC37981003DBC23 /* Constants.swift */,
 				51BB1DD32BC36B25003DBC23 /* Assets.xcassets */,
 				51BB1DD82BC36B25003DBC23 /* Savvy_Snip.entitlements */,
 				51BB1DD52BC36B25003DBC23 /* Preview Content */,
@@ -145,6 +148,7 @@
 			files = (
 				51BB1DD22BC36B24003DBC23 /* ContentView.swift in Sources */,
 				51BB1DD02BC36B24003DBC23 /* Savvy_SnipApp.swift in Sources */,
+				51BB1DE52BC37981003DBC23 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
