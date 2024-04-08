@@ -7,27 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		51BB1DD02BC36B24003DBC23 /* Savvy_SnipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1DCF2BC36B24003DBC23 /* Savvy_SnipApp.swift */; };
-		51BB1DD22BC36B24003DBC23 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1DD12BC36B24003DBC23 /* ContentView.swift */; };
-		51BB1DD42BC36B25003DBC23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51BB1DD32BC36B25003DBC23 /* Assets.xcassets */; };
-		51BB1DD72BC36B25003DBC23 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51BB1DD62BC36B25003DBC23 /* Preview Assets.xcassets */; };
-		51BB1DE32BC36D02003DBC23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51BB1DE22BC36D02003DBC23 /* LaunchScreen.storyboard */; };
-		51BB1DE52BC37981003DBC23 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB1DE42BC37981003DBC23 /* Constants.swift */; };
+		51011E3F2BC438EB00E39B80 /* Savvy_Snip_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51011E3E2BC438EB00E39B80 /* Savvy_Snip_iosApp.swift */; };
+		51011E412BC438EB00E39B80 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51011E402BC438EB00E39B80 /* ContentView.swift */; };
+		51011E432BC438EC00E39B80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51011E422BC438EC00E39B80 /* Assets.xcassets */; };
+		51011E462BC438EC00E39B80 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51011E452BC438EC00E39B80 /* Preview Assets.xcassets */; };
+		51011E512BC4390000E39B80 /* Savvy_Snip_macOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51011E502BC4390000E39B80 /* Savvy_Snip_macOSApp.swift */; };
+		51011E532BC4390000E39B80 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51011E522BC4390000E39B80 /* ContentView.swift */; };
+		51011E552BC4390100E39B80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51011E542BC4390100E39B80 /* Assets.xcassets */; };
+		51011E582BC4390100E39B80 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51011E572BC4390100E39B80 /* Preview Assets.xcassets */; };
+		51011E652BC439E000E39B80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51011E642BC439E000E39B80 /* LaunchScreen.storyboard */; };
+		51011E682BC43ACB00E39B80 /* Shared-Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51011E672BC43ACB00E39B80 /* Shared-Assets.xcassets */; };
+		51011E692BC43ACB00E39B80 /* Shared-Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51011E672BC43ACB00E39B80 /* Shared-Assets.xcassets */; };
+		51011E6B2BC43B2700E39B80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51011E6A2BC43B2700E39B80 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		51BB1DCC2BC36B24003DBC23 /* Savvy-Snip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Savvy-Snip.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		51BB1DCF2BC36B24003DBC23 /* Savvy_SnipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Savvy_SnipApp.swift; sourceTree = "<group>"; };
-		51BB1DD12BC36B24003DBC23 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		51BB1DD32BC36B25003DBC23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		51BB1DD62BC36B25003DBC23 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		51BB1DD82BC36B25003DBC23 /* Savvy_Snip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Savvy_Snip.entitlements; sourceTree = "<group>"; };
-		51BB1DE22BC36D02003DBC23 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		51BB1DE42BC37981003DBC23 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		51011E3B2BC438EB00E39B80 /* Savvy-Snip-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Savvy-Snip-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		51011E3E2BC438EB00E39B80 /* Savvy_Snip_iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Savvy_Snip_iosApp.swift; sourceTree = "<group>"; };
+		51011E402BC438EB00E39B80 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		51011E422BC438EC00E39B80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		51011E452BC438EC00E39B80 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		51011E4E2BC4390000E39B80 /* Savvy-Snip-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Savvy-Snip-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		51011E502BC4390000E39B80 /* Savvy_Snip_macOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Savvy_Snip_macOSApp.swift; sourceTree = "<group>"; };
+		51011E522BC4390000E39B80 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		51011E542BC4390100E39B80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		51011E572BC4390100E39B80 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		51011E592BC4390100E39B80 /* Savvy_Snip_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Savvy_Snip_macOS.entitlements; sourceTree = "<group>"; };
+		51011E642BC439E000E39B80 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		51011E672BC43ACB00E39B80 /* Shared-Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Shared-Assets.xcassets"; sourceTree = "<group>"; };
+		51011E6A2BC43B2700E39B80 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		51BB1DC92BC36B24003DBC23 /* Frameworks */ = {
+		51011E382BC438EB00E39B80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51011E4B2BC4390000E39B80 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -37,80 +56,130 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		51BB1DC32BC36B24003DBC23 = {
+		51011E302BC438C400E39B80 = {
 			isa = PBXGroup;
 			children = (
-				51BB1DCE2BC36B24003DBC23 /* Savvy-Snip */,
-				51BB1DCD2BC36B24003DBC23 /* Products */,
+				51011E5D2BC4390600E39B80 /* Shared */,
+				51011E3D2BC438EB00E39B80 /* Savvy-Snip-ios */,
+				51011E4F2BC4390000E39B80 /* Savvy-Snip-macOS */,
+				51011E3C2BC438EB00E39B80 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		51BB1DCD2BC36B24003DBC23 /* Products */ = {
+		51011E3C2BC438EB00E39B80 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				51BB1DCC2BC36B24003DBC23 /* Savvy-Snip.app */,
+				51011E3B2BC438EB00E39B80 /* Savvy-Snip-ios.app */,
+				51011E4E2BC4390000E39B80 /* Savvy-Snip-macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		51BB1DCE2BC36B24003DBC23 /* Savvy-Snip */ = {
+		51011E3D2BC438EB00E39B80 /* Savvy-Snip-ios */ = {
 			isa = PBXGroup;
 			children = (
-				51BB1DE22BC36D02003DBC23 /* LaunchScreen.storyboard */,
-				51BB1DCF2BC36B24003DBC23 /* Savvy_SnipApp.swift */,
-				51BB1DD12BC36B24003DBC23 /* ContentView.swift */,
-				51BB1DE42BC37981003DBC23 /* Constants.swift */,
-				51BB1DD32BC36B25003DBC23 /* Assets.xcassets */,
-				51BB1DD82BC36B25003DBC23 /* Savvy_Snip.entitlements */,
-				51BB1DD52BC36B25003DBC23 /* Preview Content */,
+				51011E642BC439E000E39B80 /* LaunchScreen.storyboard */,
+				51011E3E2BC438EB00E39B80 /* Savvy_Snip_iosApp.swift */,
+				51011E402BC438EB00E39B80 /* ContentView.swift */,
+				51011E422BC438EC00E39B80 /* Assets.xcassets */,
+				51011E442BC438EC00E39B80 /* Preview Content */,
 			);
-			path = "Savvy-Snip";
+			path = "Savvy-Snip-ios";
 			sourceTree = "<group>";
 		};
-		51BB1DD52BC36B25003DBC23 /* Preview Content */ = {
+		51011E442BC438EC00E39B80 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				51BB1DD62BC36B25003DBC23 /* Preview Assets.xcassets */,
+				51011E452BC438EC00E39B80 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		51011E4F2BC4390000E39B80 /* Savvy-Snip-macOS */ = {
+			isa = PBXGroup;
+			children = (
+				51011E6A2BC43B2700E39B80 /* LaunchScreen.storyboard */,
+				51011E502BC4390000E39B80 /* Savvy_Snip_macOSApp.swift */,
+				51011E522BC4390000E39B80 /* ContentView.swift */,
+				51011E542BC4390100E39B80 /* Assets.xcassets */,
+				51011E592BC4390100E39B80 /* Savvy_Snip_macOS.entitlements */,
+				51011E562BC4390100E39B80 /* Preview Content */,
+			);
+			path = "Savvy-Snip-macOS";
+			sourceTree = "<group>";
+		};
+		51011E562BC4390100E39B80 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				51011E572BC4390100E39B80 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		51011E5D2BC4390600E39B80 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				51011E672BC43ACB00E39B80 /* Shared-Assets.xcassets */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		51BB1DCB2BC36B24003DBC23 /* Savvy-Snip */ = {
+		51011E3A2BC438EB00E39B80 /* Savvy-Snip-ios */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 51BB1DDB2BC36B25003DBC23 /* Build configuration list for PBXNativeTarget "Savvy-Snip" */;
+			buildConfigurationList = 51011E472BC438EC00E39B80 /* Build configuration list for PBXNativeTarget "Savvy-Snip-ios" */;
 			buildPhases = (
-				51BB1DC82BC36B24003DBC23 /* Sources */,
-				51BB1DC92BC36B24003DBC23 /* Frameworks */,
-				51BB1DCA2BC36B24003DBC23 /* Resources */,
+				51011E372BC438EB00E39B80 /* Sources */,
+				51011E382BC438EB00E39B80 /* Frameworks */,
+				51011E392BC438EB00E39B80 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Savvy-Snip";
-			productName = "Savvy-Snip";
-			productReference = 51BB1DCC2BC36B24003DBC23 /* Savvy-Snip.app */;
+			name = "Savvy-Snip-ios";
+			productName = "Savvy-Snip-ios";
+			productReference = 51011E3B2BC438EB00E39B80 /* Savvy-Snip-ios.app */;
+			productType = "com.apple.product-type.application";
+		};
+		51011E4D2BC4390000E39B80 /* Savvy-Snip-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 51011E5A2BC4390100E39B80 /* Build configuration list for PBXNativeTarget "Savvy-Snip-macOS" */;
+			buildPhases = (
+				51011E4A2BC4390000E39B80 /* Sources */,
+				51011E4B2BC4390000E39B80 /* Frameworks */,
+				51011E4C2BC4390000E39B80 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Savvy-Snip-macOS";
+			productName = "Savvy-Snip-macOS";
+			productReference = 51011E4E2BC4390000E39B80 /* Savvy-Snip-macOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		51BB1DC42BC36B24003DBC23 /* Project object */ = {
+		51011E312BC438C400E39B80 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1530;
 				TargetAttributes = {
-					51BB1DCB2BC36B24003DBC23 = {
+					51011E3A2BC438EB00E39B80 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					51011E4D2BC4390000E39B80 = {
 						CreatedOnToolsVersion = 15.3;
 					};
 				};
 			};
-			buildConfigurationList = 51BB1DC72BC36B24003DBC23 /* Build configuration list for PBXProject "Savvy-Snip" */;
+			buildConfigurationList = 51011E342BC438C400E39B80 /* Build configuration list for PBXProject "Savvy-Snip" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -118,48 +187,83 @@
 				en,
 				Base,
 			);
-			mainGroup = 51BB1DC32BC36B24003DBC23;
-			productRefGroup = 51BB1DCD2BC36B24003DBC23 /* Products */;
+			mainGroup = 51011E302BC438C400E39B80;
+			productRefGroup = 51011E3C2BC438EB00E39B80 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				51BB1DCB2BC36B24003DBC23 /* Savvy-Snip */,
+				51011E3A2BC438EB00E39B80 /* Savvy-Snip-ios */,
+				51011E4D2BC4390000E39B80 /* Savvy-Snip-macOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		51BB1DCA2BC36B24003DBC23 /* Resources */ = {
+		51011E392BC438EB00E39B80 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51BB1DE32BC36D02003DBC23 /* LaunchScreen.storyboard in Resources */,
-				51BB1DD72BC36B25003DBC23 /* Preview Assets.xcassets in Resources */,
-				51BB1DD42BC36B25003DBC23 /* Assets.xcassets in Resources */,
+				51011E652BC439E000E39B80 /* LaunchScreen.storyboard in Resources */,
+				51011E682BC43ACB00E39B80 /* Shared-Assets.xcassets in Resources */,
+				51011E462BC438EC00E39B80 /* Preview Assets.xcassets in Resources */,
+				51011E432BC438EC00E39B80 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51011E4C2BC4390000E39B80 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51011E692BC43ACB00E39B80 /* Shared-Assets.xcassets in Resources */,
+				51011E582BC4390100E39B80 /* Preview Assets.xcassets in Resources */,
+				51011E6B2BC43B2700E39B80 /* LaunchScreen.storyboard in Resources */,
+				51011E552BC4390100E39B80 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		51BB1DC82BC36B24003DBC23 /* Sources */ = {
+		51011E372BC438EB00E39B80 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51BB1DD22BC36B24003DBC23 /* ContentView.swift in Sources */,
-				51BB1DD02BC36B24003DBC23 /* Savvy_SnipApp.swift in Sources */,
-				51BB1DE52BC37981003DBC23 /* Constants.swift in Sources */,
+				51011E412BC438EB00E39B80 /* ContentView.swift in Sources */,
+				51011E3F2BC438EB00E39B80 /* Savvy_Snip_iosApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51011E4A2BC4390000E39B80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51011E532BC4390000E39B80 /* ContentView.swift in Sources */,
+				51011E512BC4390000E39B80 /* Savvy_Snip_macOSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		51BB1DD92BC36B25003DBC23 /* Debug */ = {
+		51011E352BC438C400E39B80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		51011E362BC438C400E39B80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		51011E482BC438EC00E39B80 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -188,8 +292,13 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_ASSET_PATHS = "\"Savvy-Snip-ios/Preview Content\"";
+				DEVELOPMENT_TEAM = ZV8A22X9K3;
+				ENABLE_PREVIEWS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -207,22 +316,47 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Savvy-Snip";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com-Harman-Sahota-.Savvy-Snip-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		51BB1DDA2BC36B25003DBC23 /* Release */ = {
+		51011E492BC438EC00E39B80 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -251,9 +385,14 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "\"Savvy-Snip-ios/Preview Content\"";
+				DEVELOPMENT_TEAM = ZV8A22X9K3;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_PREVIEWS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -264,31 +403,103 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Savvy-Snip";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				SDKROOT = macosx;
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com-Harman-Sahota-.Savvy-Snip-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		51BB1DDC2BC36B25003DBC23 /* Debug */ = {
+		51011E5B2BC4390100E39B80 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = "Savvy-Snip/Savvy_Snip.entitlements";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "Savvy-Snip-macOS/Savvy_Snip_macOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Savvy-Snip/Preview Content\"";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_ASSET_PATHS = "\"Savvy-Snip-macOS/Preview Content\"";
 				DEVELOPMENT_TEAM = ZV8A22X9K3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Savvy Snip";
+				INFOPLIST_KEY_CFBundleDisplayName = "Savvy-Snip";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
@@ -296,30 +507,80 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "github.com-Harman-Sahota-.Savvy-Snip";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com-Harman-Sahota-.Savvy-Snip-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		51BB1DDD2BC36B25003DBC23 /* Release */ = {
+		51011E5C2BC4390100E39B80 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = "Savvy-Snip/Savvy_Snip.entitlements";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "Savvy-Snip-macOS/Savvy_Snip_macOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Savvy-Snip/Preview Content\"";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "\"Savvy-Snip-macOS/Preview Content\"";
 				DEVELOPMENT_TEAM = ZV8A22X9K3;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Savvy Snip";
+				INFOPLIST_KEY_CFBundleDisplayName = "Savvy-Snip";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
@@ -327,9 +588,15 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "github.com-Harman-Sahota-.Savvy-Snip";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com-Harman-Sahota-.Savvy-Snip-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -338,25 +605,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		51BB1DC72BC36B24003DBC23 /* Build configuration list for PBXProject "Savvy-Snip" */ = {
+		51011E342BC438C400E39B80 /* Build configuration list for PBXProject "Savvy-Snip" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				51BB1DD92BC36B25003DBC23 /* Debug */,
-				51BB1DDA2BC36B25003DBC23 /* Release */,
+				51011E352BC438C400E39B80 /* Debug */,
+				51011E362BC438C400E39B80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		51BB1DDB2BC36B25003DBC23 /* Build configuration list for PBXNativeTarget "Savvy-Snip" */ = {
+		51011E472BC438EC00E39B80 /* Build configuration list for PBXNativeTarget "Savvy-Snip-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				51BB1DDC2BC36B25003DBC23 /* Debug */,
-				51BB1DDD2BC36B25003DBC23 /* Release */,
+				51011E482BC438EC00E39B80 /* Debug */,
+				51011E492BC438EC00E39B80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		51011E5A2BC4390100E39B80 /* Build configuration list for PBXNativeTarget "Savvy-Snip-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51011E5B2BC4390100E39B80 /* Debug */,
+				51011E5C2BC4390100E39B80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 51BB1DC42BC36B24003DBC23 /* Project object */;
+	rootObject = 51011E312BC438C400E39B80 /* Project object */;
 }

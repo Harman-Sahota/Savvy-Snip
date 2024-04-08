@@ -1,14 +1,14 @@
 //
-//  Savvy_SnipApp.swift
-//  Savvy-Snip
+//  Savvy_Snip_iosApp.swift
+//  Savvy-Snip-ios
 //
-//  Created by Harman Sahota on 2024-04-07.
+//  Created by Harman Sahota on 2024-04-08.
 //
 
 import SwiftUI
 
 @main
-struct Savvy_SnipApp: App {
+struct Savvy_Snip_iosApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
