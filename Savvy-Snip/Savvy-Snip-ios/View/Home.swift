@@ -1,10 +1,3 @@
-//
-//  Home.swift
-//  Savvy-Snip-ios
-//
-//  Created by Harman Sahota on 2024-04-09.
-//
-
 import SwiftUI
 
 struct Home: View {
@@ -26,6 +19,12 @@ struct Home: View {
     }
 }
 
-#Preview {
-    Home(username: nil)
+#if DEBUG
+struct Home_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            Home(username: nil)
+        }
+    }
 }
+#endif

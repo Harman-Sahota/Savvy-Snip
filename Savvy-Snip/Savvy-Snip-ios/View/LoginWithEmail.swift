@@ -66,6 +66,14 @@ struct LoginWithEmail: View {
                     EmptyView()
                 }
             )
+            .onAppear {
+                // Hide the navigation bar when this view appears
+                UINavigationBar.appearance().isHidden = true
+            }
+            .onDisappear {
+                // Show the navigation bar when this view disappears
+                UINavigationBar.appearance().isHidden = false
+            }
         }
     }
 }
