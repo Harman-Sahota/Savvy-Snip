@@ -5,6 +5,7 @@ struct CreateAccountScreen: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var username: String = ""
+    @State private var registrationSuccessful: Bool = false // Track registration success
     
     var body: some View {
         NavigationView {
@@ -50,12 +51,9 @@ struct CreateAccountScreen: View {
                                 print(errorMessage)
                             } else {
                                 if let userCredentials = userCredentials {
-                                    // Registration successful, retrieve the username if available
+                                    // Registration successful
                                     let username = userCredentials.username ?? nil
-                                    
-                                    // navigate to another screen passing the user credentials
-                                    let homeView = Home(username: username)
-                                    
+                                    self.registrationSuccessful = true // Set flag to true
                                 } else {
                                     // Handle registration error if userCredentials is nil
                                     let errorMessage = "Error registering user: User credentials are nil."
@@ -80,6 +78,12 @@ struct CreateAccountScreen: View {
             .padding()
             .navigationBarTitle("Create Account", displayMode: .large)
             .navigationBarBackButtonHidden(false)
+            // Use a NavigationLink to navigate to the Home view upon successful registration
+            .background(
+                NavigationLink(destination: Home(username: self.username), isActive: $registrationSuccessful) {
+                    EmptyView()
+                }
+            )
         }
     }
 }

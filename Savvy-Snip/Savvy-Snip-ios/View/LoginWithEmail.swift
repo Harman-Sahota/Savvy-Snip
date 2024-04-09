@@ -1,10 +1,3 @@
-//
-//  LoginWithEmail.swift
-//  Savvy-Snip-ios
-//
-//  Created by Harman Sahota on 2024-04-09.
-//
-
 import SwiftUI
 
 struct LoginWithEmail: View {
@@ -12,6 +5,7 @@ struct LoginWithEmail: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var errorMessage: String?
+    @State private var loginSuccessful: Bool = false // Track login success
     
     var body: some View {
         NavigationView {
@@ -45,9 +39,8 @@ struct LoginWithEmail: View {
                                 // Handle login error
                                 errorMessage = "Login failed: \(error.localizedDescription)"
                             } else if let userCredentials = userCredentials {
-                                // Login successful, navigate to the next screen passing the user credentials
-                                let homeView = Home(username: userCredentials.username ?? nil)
-                                
+                                // Login successful
+                                self.loginSuccessful = true // Set flag to true
                             }
                         }
                     }
@@ -67,10 +60,20 @@ struct LoginWithEmail: View {
             .padding()
             .navigationBarTitle("Login With Email", displayMode: .large)
             .navigationBarBackButtonHidden(false)
+            // Use a NavigationLink to navigate to the Home view upon successful login
+            .background(
+                NavigationLink(destination: Home(username: nil), isActive: $loginSuccessful) {
+                    EmptyView()
+                }
+            )
         }
     }
 }
 
-#Preview {
-    LoginWithEmail()
+#if DEBUG
+struct LoginWithEmail_Previews: PreviewProvider {
+    static var previews: some View {
+        LoginWithEmail()
+    }
 }
+#endif
