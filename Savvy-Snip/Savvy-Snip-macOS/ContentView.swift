@@ -1,77 +1,62 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var email: String = ""
-    @State private var password: String = ""
-    
     var body: some View {
-        ZStack {
+        NavigationView {
+            VStack {
+                Spacer()
+                
+                Text("Welcome to Savvy Snip")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
+                
+                Spacer()
+                
+                NavigationLink(destination: CreateAccountScreen()) {
+                    Text("Register")
+                        .foregroundColor(.white)
+                        .frame(width: 200, height: 40)
+                        .background(Color.blue.opacity(0.8))
+                        .cornerRadius(10)
+                        .textCase(.uppercase)
+                }
+                .buttonStyle(.plain)
+                .padding(.horizontal)
+                
+                NavigationLink(destination: LoginWithEmail()) {
+                    Text("Login with Email")
+                        .foregroundColor(.white)
+                        .frame(width: 200, height: 40)
+                        .background(Color.blue.opacity(0.8))
+                        .cornerRadius(10)
+                        .textCase(.uppercase)
+                }
+                .buttonStyle(.plain)
+                .padding(.horizontal)
+                
+                Spacer()
+                Spacer()
+                
+                Text("OR")
+                    .font(.subheadline)
+                
+                Rectangle() // Horizontal line
+                    .frame(height: 1)
+                    .foregroundColor(.gray)
+                    .padding(.horizontal, 30)
+                    .padding(.top, -5)
+                
+                
+                Spacer()
+                Spacer()
+            }
+        }
+        .background(
             Rectangle()
                 .foregroundColor(Color("LaunchColor"))
                 .ignoresSafeArea()
-            
-            VStack {
-                Image("LaunchImage")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 200, height: 200)
-                    .padding()
-                
-                Spacer()
-                Spacer()
-                
-                VStack(spacing: 20) {
-                    HStack {
-                        Image(systemName: "envelope")
-                            .foregroundColor(.gray)
-                        TextField("Email", text: $email)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(height: 50)
-                            .controlSize(.extraLarge)
-                    }
-                    .padding(.horizontal)
-                    
-                    HStack {
-                        Image(systemName: "lock")
-                            .foregroundColor(.gray)
-                        SecureField("Password", text: $password)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(height: 50)
-                            .controlSize(.extraLarge)
-                    }
-                    .padding(.horizontal)
-                    
-                    Button(action: {
-                        // Action code
-                    }) {
-                        Text("Login")
-                            .foregroundColor(.white)
-                            .frame(width: 200,height: 40)
-                            .background(Color.blue)
-                            .cornerRadius(10)
-                            .textCase(.uppercase)
-                    }
-                    .buttonStyle(.plain)
-                    .padding(.horizontal)
-                    
-                    NavigationLink(destination: Text("Forgot your password?")) {
-                        Text("Forgot your password?")
-                            .foregroundColor(.blue)
-                            .font(.subheadline)
-                    }
-                    .padding(.top, 10)
-                    
-                    NavigationLink(destination: Text("Create An Account")) {
-                        Text("Create An Account")
-                            .foregroundColor(.blue)
-                            .font(.subheadline)
-                    }
-                    
-                    Spacer()
-                }
-                .padding()
-            }
-        }
+        )
     }
 }
 
