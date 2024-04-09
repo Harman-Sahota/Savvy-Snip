@@ -9,6 +9,10 @@ xcuserdata/
 *.xcscmblueprint
 *.xccheckout
 
+###plist files
+*.plist
+
+
 ### DS Store
 .DS_Store
 
