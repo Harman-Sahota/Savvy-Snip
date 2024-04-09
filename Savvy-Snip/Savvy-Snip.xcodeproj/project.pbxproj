@@ -39,6 +39,8 @@
 		518F392F2BC5E17F00A8CB08 /* CreateAccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518F392E2BC5E17F00A8CB08 /* CreateAccountScreen.swift */; };
 		51F778712BC5F0120013BF13 /* LoginWithEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F778702BC5F0120013BF13 /* LoginWithEmail.swift */; };
 		51F778732BC5F0CE0013BF13 /* LoginWithEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F778722BC5F0CE0013BF13 /* LoginWithEmail.swift */; };
+		51F778752BC5F9FC0013BF13 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F778742BC5F9FC0013BF13 /* Home.swift */; };
+		51F778772BC5FB780013BF13 /* HomeMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F778762BC5FB780013BF13 /* HomeMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,9 @@
 		518F392E2BC5E17F00A8CB08 /* CreateAccountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountScreen.swift; sourceTree = "<group>"; };
 		51F778702BC5F0120013BF13 /* LoginWithEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithEmail.swift; sourceTree = "<group>"; };
 		51F778722BC5F0CE0013BF13 /* LoginWithEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithEmail.swift; sourceTree = "<group>"; };
+		51F778742BC5F9FC0013BF13 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		51F778762BC5FB780013BF13 /* HomeMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenu.swift; sourceTree = "<group>"; };
+		51F778782BC5FF430013BF13 /* Savvy-Snip-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Savvy-Snip-ios.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +119,7 @@
 		51011E3D2BC438EB00E39B80 /* Savvy-Snip-ios */ = {
 			isa = PBXGroup;
 			children = (
+				51F778782BC5FF430013BF13 /* Savvy-Snip-ios.entitlements */,
 				51011E642BC439E000E39B80 /* LaunchScreen.storyboard */,
 				51011E3E2BC438EB00E39B80 /* Savvy_Snip_iosApp.swift */,
 				51011E402BC438EB00E39B80 /* ContentView.swift */,
@@ -187,6 +193,7 @@
 			children = (
 				518F392E2BC5E17F00A8CB08 /* CreateAccountScreen.swift */,
 				51F778722BC5F0CE0013BF13 /* LoginWithEmail.swift */,
+				51F778742BC5F9FC0013BF13 /* Home.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -196,6 +203,7 @@
 			children = (
 				513C76512BC5E92B006C7FE9 /* CreateAccountScreen.swift */,
 				51F778702BC5F0120013BF13 /* LoginWithEmail.swift */,
+				51F778762BC5FB780013BF13 /* HomeMenu.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,6 +335,7 @@
 				51011E412BC438EB00E39B80 /* ContentView.swift in Sources */,
 				51011E3F2BC438EB00E39B80 /* Savvy_Snip_iosApp.swift in Sources */,
 				518F39202BC5D67800A8CB08 /* FireBaseManager.swift in Sources */,
+				51F778752BC5F9FC0013BF13 /* Home.swift in Sources */,
 				51F778732BC5F0CE0013BF13 /* LoginWithEmail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,6 +351,7 @@
 				51011E512BC4390000E39B80 /* Savvy_Snip_macOSApp.swift in Sources */,
 				518F39212BC5D67800A8CB08 /* FireBaseManager.swift in Sources */,
 				51F778712BC5F0120013BF13 /* LoginWithEmail.swift in Sources */,
+				51F778772BC5FB780013BF13 /* HomeMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +405,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "Savvy-Snip-ios/Savvy-Snip-ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
@@ -488,6 +499,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "Savvy-Snip-ios/Savvy-Snip-ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
@@ -575,6 +587,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "Savvy-Snip-macOS/Savvy_Snip_macOS.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -662,6 +675,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "Savvy-Snip-macOS/Savvy_Snip_macOS.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;

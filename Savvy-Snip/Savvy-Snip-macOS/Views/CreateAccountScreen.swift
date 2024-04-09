@@ -5,64 +5,57 @@ struct CreateAccountScreen: View {
     
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var username: String = ""
     
     var body: some View {
-        ZStack {
-            Rectangle()
-                .foregroundColor(Color("LaunchColor"))
-                .ignoresSafeArea()
+        VStack {
+            Spacer()
             
-            VStack {
-                Spacer()
-                Spacer()
-                
-                Text("Create Account")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.center)
-                
-                Spacer()
-                Spacer()
-                
-                VStack(spacing: 20) {
-                    HStack {
-                        Image(systemName: "envelope")
-                            .foregroundColor(.gray)
-                        TextField("Email", text: $email)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(height: 50)
-                            .controlSize(.extraLarge)
-                    }
+            Text("Create Account")
+                .font(.title)
+                .fontWeight(.bold)
+            
+            Spacer()
+            
+            VStack(spacing: 20) {
+                TextField("Username", text: $username)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.horizontal)
-                    
-                    HStack {
-                        Image(systemName: "lock")
-                            .foregroundColor(.gray)
-                        SecureField("Password", text: $password)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(height: 50)
-                            .controlSize(.extraLarge)
-                    }
+                
+                TextField("Email", text: $email)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.horizontal)
-                    
-                    Button(action: {
-                        // Action code
-                    }) {
-                        Text("Register")
-                            .foregroundColor(.white)
-                            .frame(width: 200,height: 40)
-                            .background(Color.blue.opacity(0.8))
-                            .cornerRadius(10)
-                            .textCase(.uppercase)
-                    }
-                    .buttonStyle(.plain)
+                
+                SecureField("Password", text: $password)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.horizontal)
-                    
-                    Spacer()
+                
+                Button("Register") {
+                    // Call the registration function
+                    loginWithEmail.shared.registerUserWithEmail(email: email, password: password, username: username) { userCredentials, authResult, error in
+                        if let error = error {
+                            // Handle registration error
+                            let errorMessage = "Error registering user: \(error.localizedDescription)"
+                            print(errorMessage)
+                        } else {
+                            // Registration successful
+                            if let username = authResult?.user.displayName {
+                                // Navigate to another screen passing the user credentials
+                                HomeMenu(username: username)
+                            } else {
+                                // Handle case where username is nil
+                                print("Registration successful but username is nil.")
+                            }
+                        }
+                    }
                 }
                 .padding()
+                .buttonStyle(DefaultButtonStyle())
             }
+            
+            Spacer()
         }
+        .padding()
     }
 }
 

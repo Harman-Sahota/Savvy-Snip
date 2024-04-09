@@ -13,6 +13,7 @@ struct LoginWithEmail: View {
     
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var errorMessage: String?
     
     
     var body: some View {
@@ -55,7 +56,17 @@ struct LoginWithEmail: View {
                     .padding(.horizontal)
                     
                     Button(action: {
-                        // Action code
+                        // Call the login function
+                        loginWithEmail.shared.loginUserWithEmail(email: email, password: password) { userCredentials, error in
+                            if let error = error {
+                                // Handle login error
+                                errorMessage = "Login failed: \(error.localizedDescription)"
+                            } else if let userCredentials = userCredentials {
+                                // Login successful, navigate to the next screen passing the user credentials
+                                HomeMenu(username: userCredentials.username)
+                                
+                            }
+                        }
                     }) {
                         Text("Login")
                             .foregroundColor(.white)
