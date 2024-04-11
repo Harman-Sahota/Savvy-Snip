@@ -2,79 +2,83 @@ import SwiftUI
 
 struct LoginWithEmail: View {
     
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var errorMessage: String?
-    @State private var loginSuccessful: Bool = false // Track login success
+    // Create an instance of AuthManager to inject into LoginWithEmailModel
+    private let authManager = AuthManager()
+    
+    // Initialize LoginWithEmailModel with the injected AuthManager instance
+    @StateObject private var viewModel: LoginWithEmailModel
+    
+    init() {
+        let loginModel = LoginWithEmailModel(authManager: authManager)
+        self._viewModel = StateObject(wrappedValue: loginModel)
+    }
     
     var body: some View {
-        NavigationView {
-            VStack {
-                Spacer()
-                VStack(spacing: 15) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color.gray, lineWidth: 1) // Border for the email text field
-                            .frame(width: 300, height: 50)
-                        
-                        TextField("Email", text: $email)
-                            .padding(.horizontal)
-                            .frame(width: 280) // Adjust width to fit within the rectangle
-                    }
-                    
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color.gray, lineWidth: 1) // Border for the password secure text field
-                            .frame(width: 300, height: 50)
-                        
-                        SecureField("Password", text: $password)
-                            .padding(.horizontal)
-                            .frame(width: 280) // Adjust width to fit within the rectangle
-                    }
-                    
-                    Button("Login") {
-                        // Call the login function
-                        loginWithEmail.shared.loginUserWithEmail(email: email, password: password) { userCredentials, error in
-                            if let error = error {
-                                // Handle login error
-                                errorMessage = "Login failed: \(error.localizedDescription)"
-                            } else if let userCredentials = userCredentials {
-                                // Login successful
-                                self.loginSuccessful = true // Set flag to true
-                            }
-                        }
-                    }
-                    .frame(width: 300, height: 20)
-                    .font(.headline)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                    .textCase(.uppercase)
-                    
-                }
+        VStack(spacing: 20){
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color(UIColor.systemGray6)) // Background color for text field
+                    .frame(height: 55)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray, lineWidth: 1) // Border for text field
+                    )
                 
-                Spacer()
+                TextField("Enter your email", text: $viewModel.email)
+                    .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                    .foregroundColor(.primary) // Text color
+                    .font(.body) // Text font
+                    .cornerRadius(10) // Corner radius
+                    .autocapitalization(.none) // Disable autocapitalization
+                    .disableAutocorrection(true) // Disable autocorrection
+                    .frame(maxWidth: .infinity)
+            }
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color(UIColor.systemGray6)) // Background color for text field
+                    .frame(height: 55)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray, lineWidth: 1) // Border for text field
+                    )
+                
+                SecureField("Enter your Password", text: $viewModel.password)
+                    .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                    .foregroundColor(.primary) // Text color
+                    .font(.body) // Text font
+                    .cornerRadius(10) // Corner radius
+                    .autocapitalization(.none) // Disable autocapitalization
+                    .disableAutocorrection(true) // Disable autocorrection
+                    .frame(maxWidth: .infinity)
+            }
+            Button{
+                viewModel.registerUser()
+            } label: {
+                
+                Text("Sign In")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 55)
+                    .background(Color.blue)
+                    .cornerRadius(10.0)
                 
             }
-            .padding()
-            // Use a NavigationLink to navigate to the Home view upon successful login
-            .background(
-                NavigationLink(destination: Home(username: nil).navigationBarBackButtonHidden(true), isActive: $loginSuccessful) {
-                    
-                    EmptyView()
-                }
-            )
-            .navigationBarTitle("Login", displayMode: .large)
+            
+            
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+        .padding()
+        .navigationTitle("Sign In With Email")
     }
 }
 
 #if DEBUG
 struct LoginWithEmail_Previews: PreviewProvider {
     static var previews: some View {
-        LoginWithEmail()
+        NavigationStack{
+            LoginWithEmail()
+                .previewDevice("iPhone 15 Pro")
+        }
     }
 }
 #endif

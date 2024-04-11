@@ -15,7 +15,9 @@ struct Savvy_Snip_iosApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack{
+               RootView()
+            }
         }
     }
 }
