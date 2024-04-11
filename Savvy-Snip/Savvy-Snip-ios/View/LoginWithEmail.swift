@@ -58,23 +58,16 @@ struct LoginWithEmail: View {
                 
             }
             .padding()
-            .navigationBarTitle("Login With Email", displayMode: .large)
-            .navigationBarBackButtonHidden(false)
             // Use a NavigationLink to navigate to the Home view upon successful login
             .background(
-                NavigationLink(destination: Home(username: nil), isActive: $loginSuccessful) {
+                NavigationLink(destination: Home(username: nil).navigationBarBackButtonHidden(true), isActive: $loginSuccessful) {
+                    
                     EmptyView()
                 }
             )
-            .onAppear {
-                // Hide the navigation bar when this view appears
-                UINavigationBar.appearance().isHidden = true
-            }
-            .onDisappear {
-                // Show the navigation bar when this view disappears
-                UINavigationBar.appearance().isHidden = false
-            }
+            .navigationBarTitle("Login", displayMode: .large)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

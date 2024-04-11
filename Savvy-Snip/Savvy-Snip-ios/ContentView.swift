@@ -1,36 +1,54 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var registrationActive: Bool = false
+    @State private var loginActive: Bool = false
+    @State private var hideBackButtonForHome: Bool = false
+    
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(spacing: 20) {
                 Image("LaunchImage")
                     .resizable()
                     .frame(width: 300, height: 300)
                 
                 Spacer()
                 
-                NavigationLink(destination: CreateAccountScreen()) {
+                Button(action: {
+                    registrationActive = true
+                }) {
                     Text("Register")
-                        .frame(width: 300, height: 20)
-                        .font(.headline)
+                        .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(10)
-                        .textCase(.uppercase)
                 }
                 
-                NavigationLink(destination: LoginWithEmail()) {
+                NavigationLink(
+                    destination: CreateAccountScreen(),
+                    isActive: $registrationActive,
+                    label: { EmptyView() }
+                )
+                .isDetailLink(false) // Disable back button for this link
+                
+                Button(action: {
+                    loginActive = true
+                }) {
                     Text("Login with email")
-                        .frame(width: 300, height: 20)
-                        .font(.headline)
+                        .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(10)
-                        .textCase(.uppercase)
                 }
+                
+                NavigationLink(
+                    destination: LoginWithEmail(),
+                    isActive: $loginActive,
+                    label: { EmptyView() }
+                )
+                .isDetailLink(false) // Disable back button for this link
                 
                 Spacer()
                 
@@ -44,25 +62,14 @@ struct ContentView: View {
                     .padding(.top, -5)
                 
                 Spacer()
-                
-                
-                Spacer()
             }
-        } .onAppear {
-            // Hide the navigation bar when this view appears
-            UINavigationBar.appearance().isHidden = true
+            .padding() // Add overall padding to the VStack
+            .navigationBarBackButtonHidden(hideBackButtonForHome)
+            .onChange(of: loginActive) { newValue in
+                // Hide back button when navigating to Home from LoginWithEmail
+                hideBackButtonForHome = newValue
+            }
         }
-        .onDisappear {
-            // Show the navigation bar when this view disappears
-            UINavigationBar.appearance().isHidden = false
-        }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
-
-#if DEBUG
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
-#endif
