@@ -98,13 +98,11 @@ struct AuthDataResultModel {
     
     let uid: String?
     let email: String?
-    let photoUrl: String?
     
     init(user: User){
         
         self.uid = user.uid
         self.email = user.email
-        self.photoUrl = user.photoURL?.absoluteString
         
     }
     
@@ -131,6 +129,15 @@ final class AuthManager: AuthManagerProtocol{
         return AuthDataResultModel(user: user)
     }
     
+    //MARK: - Sign Out
+    func signOut() async throws{
+        try Auth.auth().signOut()
+    }
+}
+
+//MARK: SIGN IN EMAIL
+
+extension AuthManager{
     
     // MARK: - Register to firebase using email
     func createUser(email: String, password: String) async throws -> AuthDataResultModel{
@@ -144,19 +151,31 @@ final class AuthManager: AuthManagerProtocol{
         return AuthDataResultModel(user: authDataResult.user)
     }
     
-    
-    //MARK: - Sign Out
-    func signOut() async throws{
-        try Auth.auth().signOut()
-    }
-    
-    
     //MARK: - Rest Password
     func resetPassword(email: String) async throws{
         try await Auth.auth().sendPasswordReset(withEmail: email)
     }
     
 }
+
+//MARK: - SIGN IN SSO
+
+extension AuthManager{
+    
+    @discardableResult
+    func signInWithGoogle(tokens: GoogleSignInResultModel) async throws -> AuthDataResultModel {
+        let credential = GoogleAuthProvider.credential(withIDToken: tokens.idToken, accessToken: tokens.accessToken)
+        return try await signIn(credential: credential)
+    }
+    
+    func signIn(credential: AuthCredential) async throws -> AuthDataResultModel {
+        let authDataResult = try await Auth.auth().signIn(with: credential)
+        return AuthDataResultModel(user: authDataResult.user)
+    }
+    
+}
+
+
 //MARK: - errors dictionary
 
 enum AuthError: Error {

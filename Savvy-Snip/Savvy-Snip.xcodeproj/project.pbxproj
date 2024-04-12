@@ -21,6 +21,14 @@
 		51011E6B2BC43B2700E39B80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51011E6A2BC43B2700E39B80 /* LaunchScreen.storyboard */; };
 		513C76522BC5E92B006C7FE9 /* CreateAccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513C76512BC5E92B006C7FE9 /* CreateAccountScreen.swift */; };
 		515C59D42BC84E6300930744 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515C59D32BC84E6300930744 /* RootView.swift */; };
+		517EA4952BC9D84100D9B47D /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 517EA4942BC9D84100D9B47D /* GoogleSignIn */; };
+		517EA4972BC9D84100D9B47D /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 517EA4962BC9D84100D9B47D /* GoogleSignInSwift */; };
+		517EA4992BC9D86200D9B47D /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 517EA4982BC9D86200D9B47D /* GoogleSignIn */; };
+		517EA49B2BC9D86200D9B47D /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 517EA49A2BC9D86200D9B47D /* GoogleSignInSwift */; };
+		517EA4A02BC9DE8C00D9B47D /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EA49F2BC9DE8C00D9B47D /* Utilities.swift */; };
+		517EA4A12BC9DE8C00D9B47D /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EA49F2BC9DE8C00D9B47D /* Utilities.swift */; };
+		517EA4A32BC9E57400D9B47D /* SignInGoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EA4A22BC9E57400D9B47D /* SignInGoogleHelper.swift */; };
+		517EA4A42BC9E57400D9B47D /* SignInGoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EA4A22BC9E57400D9B47D /* SignInGoogleHelper.swift */; };
 		518F335F2BC98CA000C9941A /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518F335E2BC98CA000C9941A /* CategoryView.swift */; };
 		518F33612BC9A4B700C9941A /* LoginWithEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518F33602BC9A4B700C9941A /* LoginWithEmail.swift */; };
 		518F33632BC9B18400C9941A /* resetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518F33622BC9B18400C9941A /* resetPasswordView.swift */; };
@@ -62,6 +70,10 @@
 		51011E6A2BC43B2700E39B80 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		513C76512BC5E92B006C7FE9 /* CreateAccountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountScreen.swift; sourceTree = "<group>"; };
 		515C59D32BC84E6300930744 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		517EA49C2BC9D8A700D9B47D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		517EA49D2BC9D8EA00D9B47D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		517EA49F2BC9DE8C00D9B47D /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		517EA4A22BC9E57400D9B47D /* SignInGoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInGoogleHelper.swift; sourceTree = "<group>"; };
 		518F335E2BC98CA000C9941A /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		518F33602BC9A4B700C9941A /* LoginWithEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithEmail.swift; sourceTree = "<group>"; };
 		518F33622BC9B18400C9941A /* resetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetPasswordView.swift; sourceTree = "<group>"; };
@@ -80,8 +92,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				517EA4952BC9D84100D9B47D /* GoogleSignIn in Frameworks */,
 				518F39122BC5D5EF00A8CB08 /* FirebaseAnalyticsSwift in Frameworks */,
 				518F39162BC5D5EF00A8CB08 /* FirebaseFirestore in Frameworks */,
+				517EA4972BC9D84100D9B47D /* GoogleSignInSwift in Frameworks */,
 				518F39142BC5D5EF00A8CB08 /* FirebaseAuth in Frameworks */,
 				518F39102BC5D5EF00A8CB08 /* FirebaseAnalytics in Frameworks */,
 			);
@@ -91,8 +105,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				517EA4992BC9D86200D9B47D /* GoogleSignIn in Frameworks */,
 				518F391A2BC5D61000A8CB08 /* FirebaseAnalyticsSwift in Frameworks */,
 				518F391E2BC5D61000A8CB08 /* FirebaseFirestore in Frameworks */,
+				517EA49B2BC9D86200D9B47D /* GoogleSignInSwift in Frameworks */,
 				518F391C2BC5D61000A8CB08 /* FirebaseAuth in Frameworks */,
 				518F39182BC5D61000A8CB08 /* FirebaseAnalytics in Frameworks */,
 			);
@@ -123,6 +139,7 @@
 		51011E3D2BC438EB00E39B80 /* Savvy-Snip-ios */ = {
 			isa = PBXGroup;
 			children = (
+				517EA49C2BC9D8A700D9B47D /* Info.plist */,
 				51F778782BC5FF430013BF13 /* Savvy-Snip-ios.entitlements */,
 				51011E642BC439E000E39B80 /* LaunchScreen.storyboard */,
 				51011E3E2BC438EB00E39B80 /* Savvy_Snip_iosApp.swift */,
@@ -145,6 +162,7 @@
 		51011E4F2BC4390000E39B80 /* Savvy-Snip-macOS */ = {
 			isa = PBXGroup;
 			children = (
+				517EA49D2BC9D8EA00D9B47D /* Info.plist */,
 				51011E6A2BC43B2700E39B80 /* LaunchScreen.storyboard */,
 				51011E502BC4390000E39B80 /* Savvy_Snip_macOSApp.swift */,
 				51011E522BC4390000E39B80 /* ContentView.swift */,
@@ -167,12 +185,22 @@
 		51011E5D2BC4390600E39B80 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				517EA49E2BC9DE7700D9B47D /* Utilities */,
 				518F39232BC5DB7E00A8CB08 /* Authentication */,
 				51011E672BC43ACB00E39B80 /* Shared-Assets.xcassets */,
 				518F390B2BC5D42200A8CB08 /* GoogleService-Info.plist */,
 				518F392C2BC5E02C00A8CB08 /* Views */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		517EA49E2BC9DE7700D9B47D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				517EA49F2BC9DE8C00D9B47D /* Utilities.swift */,
+				517EA4A22BC9E57400D9B47D /* SignInGoogleHelper.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		518F39232BC5DB7E00A8CB08 /* Authentication */ = {
@@ -235,6 +263,8 @@
 				518F39112BC5D5EF00A8CB08 /* FirebaseAnalyticsSwift */,
 				518F39132BC5D5EF00A8CB08 /* FirebaseAuth */,
 				518F39152BC5D5EF00A8CB08 /* FirebaseFirestore */,
+				517EA4942BC9D84100D9B47D /* GoogleSignIn */,
+				517EA4962BC9D84100D9B47D /* GoogleSignInSwift */,
 			);
 			productName = "Savvy-Snip-ios";
 			productReference = 51011E3B2BC438EB00E39B80 /* Savvy-Snip-ios.app */;
@@ -258,6 +288,8 @@
 				518F39192BC5D61000A8CB08 /* FirebaseAnalyticsSwift */,
 				518F391B2BC5D61000A8CB08 /* FirebaseAuth */,
 				518F391D2BC5D61000A8CB08 /* FirebaseFirestore */,
+				517EA4982BC9D86200D9B47D /* GoogleSignIn */,
+				517EA49A2BC9D86200D9B47D /* GoogleSignInSwift */,
 			);
 			productName = "Savvy-Snip-macOS";
 			productReference = 51011E4E2BC4390000E39B80 /* Savvy-Snip-macOS.app */;
@@ -292,6 +324,7 @@
 			mainGroup = 51011E302BC438C400E39B80;
 			packageReferences = (
 				518F390E2BC5D5EF00A8CB08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				517EA4932BC9D84100D9B47D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 51011E3C2BC438EB00E39B80 /* Products */;
 			projectDirPath = "";
@@ -337,7 +370,9 @@
 			files = (
 				518F33612BC9A4B700C9941A /* LoginWithEmail.swift in Sources */,
 				518F39292BC5DE0600A8CB08 /* LandingScreen.swift in Sources */,
+				517EA4A02BC9DE8C00D9B47D /* Utilities.swift in Sources */,
 				518F39252BC5DBA000A8CB08 /* AuthManager.swift in Sources */,
+				517EA4A32BC9E57400D9B47D /* SignInGoogleHelper.swift in Sources */,
 				51011E412BC438EB00E39B80 /* ContentView.swift in Sources */,
 				51011E3F2BC438EB00E39B80 /* Savvy_Snip_iosApp.swift in Sources */,
 				515C59D42BC84E6300930744 /* RootView.swift in Sources */,
@@ -352,12 +387,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				517EA4A42BC9E57400D9B47D /* SignInGoogleHelper.swift in Sources */,
 				518F392A2BC5DE0600A8CB08 /* LandingScreen.swift in Sources */,
 				513C76522BC5E92B006C7FE9 /* CreateAccountScreen.swift in Sources */,
 				518F39262BC5DBA000A8CB08 /* AuthManager.swift in Sources */,
 				51011E532BC4390000E39B80 /* ContentView.swift in Sources */,
 				51011E512BC4390000E39B80 /* Savvy_Snip_macOSApp.swift in Sources */,
 				518F39212BC5D67800A8CB08 /* FireBaseManager.swift in Sources */,
+				517EA4A12BC9DE8C00D9B47D /* Utilities.swift in Sources */,
 				51F778712BC5F0120013BF13 /* LoginWithEmail.swift in Sources */,
 				51F778772BC5FB780013BF13 /* HomeMenu.swift in Sources */,
 			);
@@ -439,6 +476,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Savvy-Snip-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Savvy-Snip";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -527,6 +565,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Savvy-Snip-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Savvy-Snip";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -623,6 +662,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Savvy-Snip-macOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Savvy-Snip";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -705,6 +745,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Savvy-Snip-macOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Savvy-Snip";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -760,6 +801,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		517EA4932BC9D84100D9B47D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.0;
+			};
+		};
 		518F390E2BC5D5EF00A8CB08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -771,6 +820,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		517EA4942BC9D84100D9B47D /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 517EA4932BC9D84100D9B47D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		517EA4962BC9D84100D9B47D /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 517EA4932BC9D84100D9B47D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+		517EA4982BC9D86200D9B47D /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 517EA4932BC9D84100D9B47D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		517EA49A2BC9D86200D9B47D /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 517EA4932BC9D84100D9B47D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		518F390F2BC5D5EF00A8CB08 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 518F390E2BC5D5EF00A8CB08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
