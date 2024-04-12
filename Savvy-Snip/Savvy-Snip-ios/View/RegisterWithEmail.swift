@@ -4,7 +4,10 @@ struct RegisterWithEmail: View {
     
     // Create an instance of AuthManager to inject into LoginWithEmailModel
     private let authManager = AuthManager()
-    @State private var showAlert = false
+    @State private var errorMessage = ""
+    @State private var isEmailEmpty = false
+    @State private var isPasswordEmpty = false
+    
     // Initialize LoginWithEmailModel with the injected AuthManager instance
     @StateObject private var viewModel: LoginWithEmailModel
     
@@ -18,6 +21,9 @@ struct RegisterWithEmail: View {
         VStack(spacing: 20) {
             // Text field for email
             TextField("Enter your email", text: $viewModel.email)
+                .onChange(of: viewModel.email) { newValue in
+                    isEmailEmpty = newValue.isEmpty
+                }
                 .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
                 .foregroundColor(.primary)
                 .font(.body)
@@ -28,11 +34,14 @@ struct RegisterWithEmail: View {
                 .background(Color(UIColor.systemGray6))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.gray, lineWidth: 1)
+                        .stroke(isEmailEmpty ? Color.red : Color.gray, lineWidth: 1) // Red border if empty
                 )
             
-            // Secure text field for password
+            // Text field for password
             SecureField("Enter your Password", text: $viewModel.password)
+                .onChange(of: viewModel.password) { newValue in
+                    isPasswordEmpty = newValue.isEmpty
+                }
                 .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
                 .foregroundColor(.primary)
                 .font(.body)
@@ -43,18 +52,39 @@ struct RegisterWithEmail: View {
                 .background(Color(UIColor.systemGray6))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.gray, lineWidth: 1)
+                        .stroke(isPasswordEmpty ? Color.red : Color.gray, lineWidth: 1) // Red border if empty
                 )
             
-            // Button for signing in
+            // Error message text
+            Text(errorMessage)
+                .foregroundColor(.red)
+                .padding(.bottom, 10) // Space below the error message
+            
+            // Button for signing up
             Button(action: {
+                errorMessage = ""
                 Task {
-                    do{
+                    do {
                         let authResult = try await viewModel.registerUser()
-                        showAlert = false
-                    }catch{
+                        // Clear error message and reset empty states on success
+                        errorMessage = ""
+                        isEmailEmpty = false
+                        isPasswordEmpty = false
+                    } catch {
+                        // Handle registration error
                         DispatchQueue.main.async {
-                            showAlert = true
+                            if let authError = error as? AuthError {
+                                switch authError {
+                                case .FieldEmpty:
+                                    // Determine which field is empty and set the corresponding state
+                                    isEmailEmpty = viewModel.email.isEmpty
+                                    isPasswordEmpty = viewModel.password.isEmpty
+                                default:
+                                    errorMessage = viewModel.errorMessage
+                                }
+                            } else {
+                                errorMessage = viewModel.errorMessage
+                            }
                         }
                     }
                 }
@@ -70,20 +100,10 @@ struct RegisterWithEmail: View {
         }
         .padding()
         .navigationTitle("Sign Up With Email")
-        .alert(isPresented: $showAlert) {
-            Alert(
-                title: Text("Error"),
-                message: Text(viewModel.errorMessage),
-                dismissButton: .default(Text("OK")) {
-                    // Optionally reset the error message after dismissing the alert
-                    viewModel.errorMessage = ""
-                }
-            )
-        }
     }
 }
 
-struct LoginWithEmail_Previews: PreviewProvider {
+struct RegisterWithEmail_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             RegisterWithEmail()

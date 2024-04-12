@@ -26,7 +26,7 @@ final class LoginWithEmailModel: ObservableObject {
         do {
             // Perform user registration
             let authDataResult = try await authManager.createUser(email: email, password: password)
-                        
+            
             // Reset error message on successful registration
             errorMessage = ""
             
@@ -42,7 +42,38 @@ final class LoginWithEmailModel: ObservableObject {
         }
     }
     
-    
+    func signInUser() async throws {
+        guard !email.isEmpty, !password.isEmpty else {
+            errorMessage = "Fields Cannot Be Empty"
+            throw AuthError.FieldEmpty
+        }
+        
+        do {
+            // Perform user sign-in
+            let authDataResult = try await authManager.signInUser(email: email, password: password)
+            
+            // Reset error message on successful sign-in
+            errorMessage = ""
+            
+        }catch AuthError.wrongPassword{
+            errorMessage = "Incorrect password. Please try again."
+            throw AuthError.wrongPassword
+        }
+        catch AuthError.userNotFound{
+            errorMessage = "User not found. Please check your credentials."
+            throw AuthError.userNotFound
+        }
+        catch AuthError.networkError{
+            errorMessage = "Network error. Please check your internet connection."
+            throw AuthError.networkError
+        }
+        catch{
+            errorMessage = "Sign-in failed: \(error.localizedDescription)"
+            throw AuthError.signInFailed
+        }
+        
+        
+    }
 }
 
 
@@ -68,6 +99,7 @@ struct AuthDataResultModel {
 
 protocol AuthManagerProtocol {
     func createUser(email: String, password: String) async throws -> AuthDataResultModel
+    func signInUser(email: String, password: String) async throws -> AuthDataResultModel
 }
 
 //MARK: - Class that handles all firebase methods
@@ -107,5 +139,9 @@ enum AuthError: Error {
     case emailAlreadyInUse
     case FieldEmpty
     case registrationFailed
+    case wrongPassword
+    case userNotFound
+    case networkError
+    case signInFailed
     // Add more cases as needed for other authentication errors
 }
