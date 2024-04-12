@@ -1,16 +1,14 @@
 import SwiftUI
 
-struct RegisterWithEmail: View {
-    
+struct LoginWithEmail: View {
     // Create an instance of AuthManager to inject into LoginWithEmailModel
     private let authManager = AuthManager()
     @State private var errorMessage = ""
     @State private var isEmailEmpty = false
     @State private var isPasswordEmpty = false
-    @Binding var showSignInView: Bool
-    
     // Initialize LoginWithEmailModel with the injected AuthManager instance
     @StateObject private var viewModel: LoginWithEmailModel
+    @Binding var showSignInView: Bool
     
     init(showSignInView: Binding<Bool>) {
         self._showSignInView = showSignInView
@@ -67,12 +65,13 @@ struct RegisterWithEmail: View {
                 errorMessage = ""
                 Task {
                     do {
-                        try await viewModel.registerUser()
+                        try await viewModel.signInUser()
                         // Clear error message and reset empty states on success
                         errorMessage = ""
                         isEmailEmpty = false
                         isPasswordEmpty = false
                         showSignInView = false
+                        
                     } catch {
                         // Handle registration error
                         DispatchQueue.main.async {
@@ -92,7 +91,7 @@ struct RegisterWithEmail: View {
                     }
                 }
             }) {
-                Text("Sign Up")
+                Text("Sign In")
                     .font(.headline)
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
@@ -102,14 +101,14 @@ struct RegisterWithEmail: View {
             }
         }
         .padding()
-        .navigationTitle("Sign Up With Email")
+        .navigationTitle("Sign In With Email")
     }
 }
 
-struct RegisterWithEmail_Previews: PreviewProvider {
+struct LoginWithEmail_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            RegisterWithEmail(showSignInView: .constant(false))
+            LoginWithEmail(showSignInView: .constant(false))
         }
     }
 }
