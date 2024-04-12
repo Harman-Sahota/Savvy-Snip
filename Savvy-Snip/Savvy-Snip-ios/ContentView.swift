@@ -15,9 +15,9 @@ struct ContentView: View {
             Spacer()
             
             NavigationLink{
-                LoginWithEmail()
+                RegisterWithEmail()
             } label: {
-                Text("Sign In With Email")
+                Text("Sign Up With Email")
                     .font(.headline)
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)

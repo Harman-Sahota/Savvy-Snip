@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct LoginWithEmail: View {
+struct RegisterWithEmail: View {
     
     // Create an instance of AuthManager to inject into LoginWithEmailModel
     private let authManager = AuthManager()
@@ -59,7 +59,7 @@ struct LoginWithEmail: View {
                     }
                 }
             }) {
-                Text("Sign In")
+                Text("Sign Up")
                     .font(.headline)
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
@@ -69,7 +69,7 @@ struct LoginWithEmail: View {
             }
         }
         .padding()
-        .navigationTitle("Sign In With Email")
+        .navigationTitle("Sign Up With Email")
         .alert(isPresented: $showAlert) {
             Alert(
                 title: Text("Error"),
@@ -86,7 +86,7 @@ struct LoginWithEmail: View {
 struct LoginWithEmail_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            LoginWithEmail()
+            RegisterWithEmail()
         }
     }
 }
