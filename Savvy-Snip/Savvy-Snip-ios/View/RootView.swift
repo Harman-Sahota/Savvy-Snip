@@ -1,45 +1,36 @@
-//
-//  RootView.swift
-//  Savvy-Snip-ios
-//
-//  Created by Harman Sahota on 2024-04-11.
-//
-
 import SwiftUI
+import FirebaseAuth // Make sure FirebaseAuth is imported
 
 struct RootView: View {
     
     @State private var showSignInView: Bool = false
-    
-    // Create an instance of AuthManager to inject into LoginWithEmailModel
     private let authManager = AuthManager()
     
     var body: some View {
-        ZStack{
-            NavigationStack{
-                Text("Settings")
+        ZStack {
+            NavigationStack {
+                CategoryView(showSignInView: $showSignInView)
             }
         }
-        
-        .onAppear{
-            do {
-                let authUser = try authManager.getAuthenticatedUser()
-                if authUser == nil {
-                    showSignInView = true
-                }
-            } catch {
-                print("Error checking authenticated user: \(error.localizedDescription)")
-            }
+        .onAppear {
+            let authUser = try? authManager.getAuthenticatedUser()
+            self.showSignInView = authUser == nil
         }
-        
-        .fullScreenCover(isPresented: $showSignInView, content: {
+        .fullScreenCover(isPresented: $showSignInView) {
             NavigationStack{
                 ContentView()
             }
-        })
+        }
     }
+    
 }
 
-#Preview {
-    RootView()
+
+
+struct RootView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack{
+            RootView()
+        }
+    }
 }

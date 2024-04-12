@@ -17,34 +17,32 @@ final class LoginWithEmailModel: ObservableObject {
         self.authManager = authManager
     }
     
-    func registerUser() {
-        Task {
-            do {
-                guard !email.isEmpty, !password.isEmpty else {
-                    // Handle empty email or password error
-                    if email.isEmpty {
-                        errorMessage = "Please enter your email."
-                    } else {
-                        errorMessage = "Please enter your password."
-                    }
-                    return
-                }
-                
-                let authDataResult = try await authManager.createUser(email: email, password: password)
-                
-                // Handle successful registration (e.g., navigate to next screen)
-                print("Success")
-                
-                // Reset error message on successful registration
-                errorMessage = ""
-                
-            } catch {
-                // Handle error from createUser function
-                errorMessage = "Failed to register user: \(error.localizedDescription)"
-                print(error.localizedDescription)
-            }
+    func registerUser() async throws {
+        guard !email.isEmpty, !password.isEmpty else {
+            errorMessage = "Fields Cannot Be Empty"
+            throw AuthError.FieldEmpty
+        }
+        
+        do {
+            // Perform user registration
+            let authDataResult = try await authManager.createUser(email: email, password: password)
+                        
+            // Reset error message on successful registration
+            errorMessage = ""
+            
+        } catch AuthError.emailAlreadyInUse {
+            errorMessage = "Email is already associated with an existing account."
+            throw AuthError.emailAlreadyInUse // rethrow the error to indicate the specific issue
+            
+        } catch {
+            // Handle other errors
+            errorMessage = "Failed to register user: \(error.localizedDescription)"
+            print(error.localizedDescription)
+            throw AuthError.registrationFailed
         }
     }
+    
+    
 }
 
 
@@ -76,10 +74,10 @@ protocol AuthManagerProtocol {
 
 final class AuthManager: AuthManagerProtocol{
     
-    //MARK: - Get logged in user
-    func getAuthenticatedUser() throws -> AuthDataResultModel{
-        guard let user = Auth.auth().currentUser else{
-            fatalError("No logged in user")
+    // MARK: - Get authenticated user
+    func getAuthenticatedUser() throws -> AuthDataResultModel? {
+        guard let user = Auth.auth().currentUser else {
+            throw URLError(.badServerResponse)
         }
         return AuthDataResultModel(user: user)
     }
@@ -90,4 +88,24 @@ final class AuthManager: AuthManagerProtocol{
         let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
         return AuthDataResultModel(user: authDataResult.user)
     }
+    
+    // MARK: - Sign in to firebase with email
+    func signInUser(email: String, password: String) async throws -> AuthDataResultModel {
+        let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
+        return AuthDataResultModel(user: authDataResult.user)
+    }
+    
+    
+    //MARK: - Sign Out
+    func signOut() async throws{
+        try Auth.auth().signOut()
+    }
+}
+
+
+enum AuthError: Error {
+    case emailAlreadyInUse
+    case FieldEmpty
+    case registrationFailed
+    // Add more cases as needed for other authentication errors
 }
