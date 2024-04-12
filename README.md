@@ -2,6 +2,8 @@
 
 ![Savvy Snip Logo](logo.svg)
 
+Last Updated: April 12 2024
+
 Welcome to Savvy Snip, your future go-to tool for storing, organizing, and accessing code snippets with ease. Whether you're a seasoned developer or just getting started, Savvy Snip is designed to streamline your workflow and boost your coding efficiency. Say goodbye to repetitive Google searches and hello to a seamless coding experience.
 
 ## Table of Contents
