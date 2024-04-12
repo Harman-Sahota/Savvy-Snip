@@ -55,6 +55,10 @@ struct LoginWithEmail: View {
                         .stroke(isPasswordEmpty ? Color.red : Color.gray, lineWidth: 1) // Red border if empty
                 )
             
+            NavigationLink(destination: resetPasswordView()) {
+                Text("Forgot Password?")
+            }
+            
             // Error message text
             Text(errorMessage)
                 .foregroundColor(.red)
@@ -100,6 +104,7 @@ struct LoginWithEmail: View {
                     .cornerRadius(10.0)
             }
         }
+        
         .padding()
         .navigationTitle("Sign In With Email")
     }

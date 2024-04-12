@@ -71,9 +71,24 @@ final class LoginWithEmailModel: ObservableObject {
             errorMessage = "Sign-in failed: \(error.localizedDescription)"
             throw AuthError.signInFailed
         }
-        
-        
     }
+    
+    // MARK: - Reset Password Function
+    func resetPassword(email: String) async throws {
+        guard !email.isEmpty else {
+            throw AuthError.FieldEmpty
+        }
+        
+        do {
+            try await authManager.resetPassword(email: email)
+            // Password reset successful, handle UI updates or navigation here
+        } catch {
+            // Handle reset password error
+            print("Error resetting password: \(error)")
+            throw error
+        }
+    }
+    
 }
 
 
@@ -100,6 +115,8 @@ struct AuthDataResultModel {
 protocol AuthManagerProtocol {
     func createUser(email: String, password: String) async throws -> AuthDataResultModel
     func signInUser(email: String, password: String) async throws -> AuthDataResultModel
+    func getAuthenticatedUser() throws -> AuthDataResultModel?
+    func resetPassword(email: String) async throws
 }
 
 //MARK: - Class that handles all firebase methods
@@ -132,8 +149,15 @@ final class AuthManager: AuthManagerProtocol{
     func signOut() async throws{
         try Auth.auth().signOut()
     }
+    
+    
+    //MARK: - Rest Password
+    func resetPassword(email: String) async throws{
+        try await Auth.auth().sendPasswordReset(withEmail: email)
+    }
+    
 }
-
+//MARK: - errors dictionary
 
 enum AuthError: Error {
     case emailAlreadyInUse
@@ -143,5 +167,6 @@ enum AuthError: Error {
     case userNotFound
     case networkError
     case signInFailed
+    case NoEmailError
     // Add more cases as needed for other authentication errors
 }
