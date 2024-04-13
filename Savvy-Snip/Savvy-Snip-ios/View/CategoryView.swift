@@ -33,58 +33,63 @@ struct CategoryView: View {
     @State private var categories: [Category] = []
     
     var body: some View {
-        VStack{
+        VStack {
             // Search Bar and Plus Button Row
             HStack {
-                TextField("Search", text: $searchText)
-                    .padding(.vertical, 10)
-                    .padding(.horizontal, 16)
-                    .background(Color(.systemGray5))
-                    .cornerRadius(8)
-                    .padding(.trailing, 8) // Add trailing padding to the TextField
+                Text("")
+                    .searchable(text: $searchText)
                 
                 Button(action: {
                     // Action for adding new category
                 }) {
-                    Image(systemName: "plus")
-                        .font(.title)
-                        .foregroundColor(.white)
-                        .padding(10) // Add padding around the plus icon
-                        .background(Color.blue)
-                        .clipShape(Rectangle())
-                        .cornerRadius(10)
+                    HStack {
+                        Image(systemName: "plus.circle.fill")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                        
+                        Text("Add A New Category")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .cornerRadius(8)
+                    .padding(.horizontal)
+                    .padding(.vertical, 2)
                 }
-                .padding(.leading, 6)
             }
             .padding(.horizontal)
             .padding(.top, 10)
             
-            Spacer()
+            Spacer() // This spacer expands to fill remaining vertical space
             
-                .navigationBarTitle("Your Categories", displayMode: .large)
-                .navigationBarItems(trailing:
-                                        Button(action: {
-                    viewModel.logOut()
-                    showSignInView = true
-                }) {
-                    Text("Log Out")
-                        .foregroundColor(.blue)
-                        .padding(.vertical, 4)
-                        .padding(.horizontal, 12)
-                }
-                )
-                .alert(isPresented: $viewModel.showErrorAlert) {
-                    Alert(
-                        title: Text("Error"),
-                        message: Text(viewModel.errorMessage),
-                        dismissButton: .default(Text("OK"))
-                    )
-                }
+        }
+        .navigationBarTitle("Your Categories", displayMode: .large)
+        .navigationBarItems(trailing:
+                                Button(action: {
+            viewModel.logOut()
+            showSignInView = true
+        }) {
+            Text("Log Out")
+                .foregroundColor(.blue)
+                .padding(.vertical, 4)
+                .padding(.horizontal, 12)
+        }
+        )
+        .alert(isPresented: $viewModel.showErrorAlert) {
+            Alert(
+                title: Text("Error"),
+                message: Text(viewModel.errorMessage),
+                dismissButton: .default(Text("OK"))
+            )
         }
         .navigationViewStyle(StackNavigationViewStyle()) // Use stack navigation style
-        
     }
 }
+
+
+
 
 //MARK: - Preview
 
