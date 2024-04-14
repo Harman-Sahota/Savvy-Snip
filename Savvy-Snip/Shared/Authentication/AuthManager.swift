@@ -89,6 +89,16 @@ final class LoginWithEmailModel: ObservableObject {
         }
     }
     
+    func deleteAccount() async throws {
+        do {
+            try await authManager.deleteAccount() // Call the delete method from AuthManager
+            // Handle successful account deletion
+        } catch {
+            print("Error deleting account: \(error.localizedDescription)")
+            throw error
+        }
+    }
+    
 }
 
 
@@ -115,6 +125,7 @@ protocol AuthManagerProtocol {
     func signInUser(email: String, password: String) async throws -> AuthDataResultModel
     func getAuthenticatedUser() throws -> AuthDataResultModel?
     func resetPassword(email: String) async throws
+    func deleteAccount() async throws
 }
 
 //MARK: - Class that handles all firebase methods
@@ -171,6 +182,13 @@ extension AuthManager{
     func signIn(credential: AuthCredential) async throws -> AuthDataResultModel {
         let authDataResult = try await Auth.auth().signIn(with: credential)
         return AuthDataResultModel(user: authDataResult.user)
+    }
+    
+    func deleteAccount() async throws{
+        guard let user = Auth.auth().currentUser else {
+            throw URLError(.badURL)
+        }
+        try await user.delete()
     }
     
 }
