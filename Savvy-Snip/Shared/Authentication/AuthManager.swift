@@ -1,6 +1,7 @@
 import Foundation
 import FirebaseCore
 import FirebaseAuth
+import FirebaseFirestore
 
 // MARK: - Struct that takes in email and password for passing credentials to functions
 
@@ -118,6 +119,13 @@ struct AuthDataResultModel {
     
 }
 
+//MARK: - user profile for firestore db
+struct UserProfile {
+    let uid: String
+    let email: String
+    
+}
+
 //MARK: - protocol for dependency injection
 
 protocol AuthManagerProtocol {
@@ -144,6 +152,16 @@ final class AuthManager: AuthManagerProtocol{
     func signOut() async throws{
         try Auth.auth().signOut()
     }
+    
+    //MARK: - user profile creation method
+    func userProfileToData(_ userProfile: UserProfile) -> [String: Any] {
+        let data: [String: Any] = [
+            "uid": userProfile.uid,
+            "email": userProfile.email
+        ]
+        
+        return data
+    }
 }
 
 //MARK: SIGN IN EMAIL
@@ -153,12 +171,15 @@ extension AuthManager{
     // MARK: - Register to firebase using email
     func createUser(email: String, password: String) async throws -> AuthDataResultModel{
         let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
+        let userProfile = UserProfile(uid: authDataResult.user.uid, email: authDataResult.user.email ?? "")
+        try await Firestore.firestore().collection("users").document(authDataResult.user.uid).setData(userProfileToData(userProfile))
         return AuthDataResultModel(user: authDataResult.user)
     }
     
     // MARK: - Sign in to firebase with email
     func signInUser(email: String, password: String) async throws -> AuthDataResultModel {
         let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
+        
         return AuthDataResultModel(user: authDataResult.user)
     }
     
@@ -176,6 +197,9 @@ extension AuthManager{
     @discardableResult
     func signInWithGoogle(tokens: GoogleSignInResultModel) async throws -> AuthDataResultModel {
         let credential = GoogleAuthProvider.credential(withIDToken: tokens.idToken, accessToken: tokens.accessToken)
+        let authDataResult = try await Auth.auth().signIn(with: credential)
+        let userProfile = UserProfile(uid: authDataResult.user.uid, email: authDataResult.user.email ?? "")
+        try await Firestore.firestore().collection("users").document(authDataResult.user.uid).setData(userProfileToData(userProfile))
         return try await signIn(credential: credential)
     }
     
