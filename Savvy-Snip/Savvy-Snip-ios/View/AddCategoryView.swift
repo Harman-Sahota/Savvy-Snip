@@ -39,7 +39,6 @@ struct AddCategoryView: View {
                 )
             
             Button(action: {
-                self.dismissKeyboard()
                 saveCategory()
                 isShowingSheet = false
                 

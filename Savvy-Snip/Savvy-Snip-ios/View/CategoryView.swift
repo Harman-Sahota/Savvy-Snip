@@ -1,12 +1,5 @@
 import SwiftUI
 
-//MARK: -  Extension to dismiss keyboard
-extension View {
-    func dismissKeyboard() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
-}
-
 //MARK: - View model to handle logging out
 @MainActor
 final class CategoryViewModel: ObservableObject {
@@ -90,14 +83,12 @@ struct CategoryView: View {
     @Binding var showSignInView: Bool
     @State private var searchText = ""
     @State private var isShowingAddCategorySheet = false
-    @Environment(\.scenePhase) private var scenePhase
     
     var body: some View {
         VStack {
             HStack {
                 Button(action: {
                     isShowingAddCategorySheet = true
-                    dismissKeyboard()
                 }) {
                     HStack {
                         Image(systemName: "plus.circle.fill")
@@ -133,28 +124,30 @@ struct CategoryView: View {
                         Text(category.name)
                             .padding(.vertical, 8)
                     }
-                }.onDelete(perform: viewModel.deleteCategory)
+                }
+                .onDelete(perform: viewModel.deleteCategory)
             }
             .searchable(text: $searchText)
-            
-            Spacer()
-            
-            Button(role: .destructive, action: {
-                dismissKeyboard()
-                viewModel.deleteAccount()
-                showSignInView = true
-            }) {
-                Text("Delete Account")
-                    .foregroundColor(.red)
-                    .font(.headline)
+            .navigationBarTitle("Your Categories", displayMode: .large)
+            .navigationBarItems(trailing:
+                Button(action: {
+                    viewModel.logOut()
+                    showSignInView = true
+                }) {
+                    Text("Log Out")
+                        .foregroundColor(.blue)
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, 12)
+                }
+            )
+            .alert(isPresented: $viewModel.showErrorAlert) {
+                Alert(
+                    title: Text("Error"),
+                    message: Text(viewModel.errorMessage),
+                    dismissButton: .default(Text("OK"))
+                )
             }
-            .padding()
-            .frame(maxWidth: .infinity)
-            .background(Color.clear)
-            .cornerRadius(8)
-            .padding(.horizontal)
-            .padding(.vertical, 2)
-            
+            .navigationViewStyle(StackNavigationViewStyle())
         }
         .contentShape(Rectangle()) // Ensure the VStack is tappable
         .onAppear {
@@ -162,36 +155,8 @@ struct CategoryView: View {
                 await viewModel.fetchCategories()
             }
         }
-        .onTapGesture {
-            dismissKeyboard() // Dismiss keyboard on tap
-        }
-        .navigationBarTitle("Your Categories", displayMode: .large)
-        .navigationBarItems(trailing:
-                                Button(action: {
-            viewModel.logOut()
-            showSignInView = true
-        }) {
-            Text("Log Out")
-                .foregroundColor(.blue)
-                .padding(.vertical, 4)
-                .padding(.horizontal, 12)
-        }
-        )
-        .alert(isPresented: $viewModel.showErrorAlert) {
-            Alert(
-                title: Text("Error"),
-                message: Text(viewModel.errorMessage),
-                dismissButton: .default(Text("OK"))
-            )
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
-    }
-    
-    private func dismissKeyboard() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
-
 
 //MARK: -  Preview
 struct CategoryView_Previews: PreviewProvider {
