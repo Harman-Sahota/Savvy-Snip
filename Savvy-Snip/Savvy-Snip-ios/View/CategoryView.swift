@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 //MARK: - View model to handle logging out
 @MainActor
@@ -79,10 +80,11 @@ final class CategoryViewModel: ObservableObject {
 
 //MARK: - UI
 struct CategoryView: View {
-    @StateObject private var viewModel = CategoryViewModel()
     @Binding var showSignInView: Bool
+    @StateObject private var viewModel = CategoryViewModel()
     @State private var searchText = ""
     @State private var isShowingAddCategorySheet = false
+    @State private var loginState = UUID()
     
     var body: some View {
         VStack {
@@ -130,15 +132,15 @@ struct CategoryView: View {
             .searchable(text: $searchText)
             .navigationBarTitle("Your Categories", displayMode: .large)
             .navigationBarItems(trailing:
-                Button(action: {
-                    viewModel.logOut()
-                    showSignInView = true
-                }) {
-                    Text("Log Out")
-                        .foregroundColor(.blue)
-                        .padding(.vertical, 4)
-                        .padding(.horizontal, 12)
-                }
+                                    Button(action: {
+                viewModel.logOut()
+                showSignInView = true
+            }) {
+                Text("Log Out")
+                    .foregroundColor(.blue)
+                    .padding(.vertical, 4)
+                    .padding(.horizontal, 12)
+            }
             )
             .alert(isPresented: $viewModel.showErrorAlert) {
                 Alert(
@@ -150,9 +152,17 @@ struct CategoryView: View {
             .navigationViewStyle(StackNavigationViewStyle())
         }
         .contentShape(Rectangle()) // Ensure the VStack is tappable
+        .id(loginState)
         .onAppear {
             Task {
                 await viewModel.fetchCategories()
+            }
+        }
+        .onChange(of: showSignInView) { newValue in
+            if !newValue {
+                Task {
+                    await viewModel.fetchCategories()
+                }
             }
         }
     }
@@ -166,3 +176,4 @@ struct CategoryView_Previews: PreviewProvider {
         }
     }
 }
+
