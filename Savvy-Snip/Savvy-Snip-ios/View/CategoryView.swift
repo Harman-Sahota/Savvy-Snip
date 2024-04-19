@@ -45,6 +45,7 @@ struct CategoryView: View {
     @StateObject private var viewModel = CategoryViewModel()
     @Binding var showSignInView: Bool
     @State private var searchText = ""
+    @State private var isShowingAddCategorySheet = false
     
     var body: some View {
         VStack {
@@ -53,7 +54,7 @@ struct CategoryView: View {
                     .searchable(text: $searchText)
                 
                 Button(action: {
-                    // Action for adding new category
+                    isShowingAddCategorySheet = true
                     self.dismissKeyboard()
                 }) {
                     HStack {
@@ -71,6 +72,8 @@ struct CategoryView: View {
                     .cornerRadius(8)
                     .padding(.horizontal)
                     .padding(.vertical, 2)
+                }.sheet(isPresented: $isShowingAddCategorySheet) {
+                    AddCategoryView(isShowingSheet: $isShowingAddCategorySheet)
                 }
             }
             .padding(.horizontal)
