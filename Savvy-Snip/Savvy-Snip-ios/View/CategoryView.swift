@@ -133,7 +133,7 @@ struct CategoryView: View {
                         Text(category.name)
                             .padding(.vertical, 8)
                     }
-                }
+                }.onDelete(perform: viewModel.deleteCategory)
             }
             .searchable(text: $searchText)
             
