@@ -75,14 +75,13 @@ struct LoginWithEmail: View {
                         isEmailEmpty = false
                         isPasswordEmpty = false
                         showSignInView = false
-                        
+                       
                     } catch {
                         // Handle registration error
                         DispatchQueue.main.async {
                             if let authError = error as? AuthError {
                                 switch authError {
                                 case .FieldEmpty:
-                                    // Determine which field is empty and set the corresponding state
                                     isEmailEmpty = viewModel.email.isEmpty
                                     isPasswordEmpty = viewModel.password.isEmpty
                                 default:

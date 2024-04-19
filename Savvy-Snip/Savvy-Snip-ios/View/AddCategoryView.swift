@@ -11,6 +11,7 @@ struct AddCategoryView: View {
     @State private var categoryName = ""
     @Environment(\.presentationMode) var presentationMode
     @Binding var isShowingSheet: Bool
+    @State private var error: Error?
     
     var body: some View {
         VStack(spacing: 20) {
@@ -39,6 +40,7 @@ struct AddCategoryView: View {
             
             Button(action: {
                 self.dismissKeyboard()
+                saveCategory()
                 isShowingSheet = false
                 
             }) {
@@ -63,10 +65,22 @@ struct AddCategoryView: View {
             isShowingSheet = false
         }
     }
+    private func saveCategory() {
+        AuthManager().saveCategory(categoryName: categoryName) { error in
+            if let error = error {
+                print("Error saving category: \(error.localizedDescription)")
+                self.error = error
+            } else {
+                isShowingSheet = false
+            }
+        }
+    }
 }
 
-#Preview {
-    NavigationStack {
-        AddCategoryView(isShowingSheet: .constant(true))
+struct AddCategoryView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            AddCategoryView(isShowingSheet: .constant(true))
+        }
     }
 }

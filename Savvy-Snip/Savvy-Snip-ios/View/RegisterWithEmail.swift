@@ -73,6 +73,7 @@ struct RegisterWithEmail: View {
                         isEmailEmpty = false
                         isPasswordEmpty = false
                         showSignInView = false
+                        
                     } catch {
                         // Handle registration error
                         DispatchQueue.main.async {

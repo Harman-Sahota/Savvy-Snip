@@ -1,17 +1,17 @@
 import SwiftUI
 
-// Extension to dismiss keyboard
+//MARK: -  Extension to dismiss keyboard
 extension View {
     func dismissKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 
-// View model to handle logging out
+//MARK: - View model to handle logging out
 @MainActor
 final class CategoryViewModel: ObservableObject {
     private let authManager = AuthManager()
-    
+    @Published var categories: [Category] = []
     @Published var showErrorAlert = false
     @Published var errorMessage = "An error occurred during logout. Please try again."
     
@@ -19,12 +19,20 @@ final class CategoryViewModel: ObservableObject {
         Task {
             do {
                 try await authManager.signOut()
+                self.reset()
             } catch {
                 print("Error logging out: \(error.localizedDescription)")
                 self.errorMessage = "Error logging out: \(error.localizedDescription)"
                 self.showErrorAlert = true
             }
         }
+    }
+    
+    // Function to reset state
+    func reset() {
+        categories = []
+        showErrorAlert = false
+        errorMessage = "An error occurred. Please try again."
     }
     
     func deleteAccount() {
@@ -38,24 +46,58 @@ final class CategoryViewModel: ObservableObject {
             }
         }
     }
+    
+    func fetchCategories() async {
+        do {
+            self.categories = try await authManager.getCategories()
+        } catch {
+            print("Error fetching categories: \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                self.errorMessage = "Error fetching categories: \(error.localizedDescription)"
+                self.showErrorAlert = true
+            }
+        }
+    }
+    
+    func deleteCategory(at offsets: IndexSet) {
+        guard let index = offsets.first, index < categories.count else { return }
+        let categoryToDelete = categories[index]
+        
+        Task {
+            do {
+                try await authManager.deleteCategory(categoryToDelete)
+                await fetchCategories()
+            } catch {
+                print("Error deleting category: \(error.localizedDescription)")
+                self.errorMessage = "Error deleting category: \(error.localizedDescription)"
+                self.showErrorAlert = true
+            }
+        }
+    }
+    
+    func filteredCategories(for searchText: String) -> [Category] {
+        if searchText.isEmpty {
+            return categories
+        } else {
+            return categories.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
 }
 
-// UI
+//MARK: - UI
 struct CategoryView: View {
     @StateObject private var viewModel = CategoryViewModel()
     @Binding var showSignInView: Bool
     @State private var searchText = ""
     @State private var isShowingAddCategorySheet = false
+    @Environment(\.scenePhase) private var scenePhase
     
     var body: some View {
         VStack {
             HStack {
-                Text("")
-                    .searchable(text: $searchText)
-                
                 Button(action: {
                     isShowingAddCategorySheet = true
-                    self.dismissKeyboard()
+                    dismissKeyboard()
                 }) {
                     HStack {
                         Image(systemName: "plus.circle.fill")
@@ -72,18 +114,33 @@ struct CategoryView: View {
                     .cornerRadius(8)
                     .padding(.horizontal)
                     .padding(.vertical, 2)
-                }.sheet(isPresented: $isShowingAddCategorySheet) {
+                }
+                .sheet(isPresented: $isShowingAddCategorySheet) {
                     AddCategoryView(isShowingSheet: $isShowingAddCategorySheet)
+                        .onDisappear {
+                            Task {
+                                await viewModel.fetchCategories()
+                            }
+                        }
                 }
             }
             .padding(.horizontal)
             .padding(.top, 10)
             
+            List {
+                ForEach(viewModel.filteredCategories(for: searchText), id: \.id) { category in
+                    NavigationLink(destination: SnipsView(categoryName: category.name)) {
+                        Text(category.name)
+                            .padding(.vertical, 8)
+                    }
+                }
+            }
+            .searchable(text: $searchText)
             
             Spacer()
             
             Button(role: .destructive, action: {
-                self.dismissKeyboard()
+                dismissKeyboard()
                 viewModel.deleteAccount()
                 showSignInView = true
             }) {
@@ -100,8 +157,13 @@ struct CategoryView: View {
             
         }
         .contentShape(Rectangle()) // Ensure the VStack is tappable
+        .onAppear {
+            Task {
+                await viewModel.fetchCategories()
+            }
+        }
         .onTapGesture {
-            self.dismissKeyboard() // Dismiss keyboard on tap
+            dismissKeyboard() // Dismiss keyboard on tap
         }
         .navigationBarTitle("Your Categories", displayMode: .large)
         .navigationBarItems(trailing:
@@ -124,9 +186,14 @@ struct CategoryView: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
+    
+    private func dismissKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
 }
 
-// Preview
+
+//MARK: -  Preview
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {

@@ -8,13 +8,12 @@
 // FirebaseManager.swift
 //shared firebase methods
 import FirebaseCore
-import FirebaseFirestore
 
 class FirebaseManager {
+    
+    
     static func configureFirebase() {
         FirebaseApp.configure()
-        
-        let db = Firestore.firestore()
     }
 }
 

@@ -26,7 +26,7 @@ final class LoginWithEmailModel: ObservableObject {
         
         do {
             // Perform user registration
-            let authDataResult = try await authManager.createUser(email: email, password: password)
+            _ = try await authManager.createUser(email: email, password: password)
             
             // Reset error message on successful registration
             errorMessage = ""
@@ -51,7 +51,7 @@ final class LoginWithEmailModel: ObservableObject {
         
         do {
             // Perform user sign-in
-            let authDataResult = try await authManager.signInUser(email: email, password: password)
+            _ = try await authManager.signInUser(email: email, password: password)
             
             // Reset error message on successful sign-in
             errorMessage = ""
@@ -100,6 +100,8 @@ final class LoginWithEmailModel: ObservableObject {
         }
     }
     
+    
+    
 }
 
 
@@ -139,6 +141,11 @@ protocol AuthManagerProtocol {
 //MARK: - Class that handles all firebase methods
 
 final class AuthManager: AuthManagerProtocol{
+    
+    private var currentUser: User? {
+           return Auth.auth().currentUser
+       }
+    private let db = Firestore.firestore()
     
     // MARK: - Get authenticated user
     func getAuthenticatedUser() throws -> AuthDataResultModel? {
@@ -217,6 +224,92 @@ extension AuthManager{
     
 }
 
+//MARK: - Category model to store retrieved data model
+
+struct Category{
+    var id: String
+    var name: String
+}
+
+//MARK: - Save category data - firestore db
+
+extension AuthManager{
+    
+    func saveCategory(categoryName: String, completion: @escaping (Error?) -> Void) {
+        guard let userID = currentUser?.uid else {
+            completion(AuthError.userNotLoggedIn)
+            return
+        }
+        
+        let userRef = db.collection("users").document(userID)
+        let categoryData: [String: Any] = [
+            "categoryName": categoryName
+        ]
+        
+        // Add a new document to the "categories" subcollection
+        userRef.collection("categories").addDocument(data: categoryData) { error in
+            if let error = error {
+                print("Error adding category: \(error.localizedDescription)")
+                completion(error)
+            } else {
+                print("Category added successfully!")
+                completion(nil)
+            }
+        }
+    }
+}
+
+//MARK: - retrieve and delete category data - firestore db
+
+extension AuthManager {
+    func getCategories() async throws -> [Category] {
+        guard let userID = currentUser?.uid else {
+            throw AuthError.userNotLoggedIn
+        }
+        
+        let userRef = db.collection("users").document(userID)
+        
+        do {
+            let querySnapshot = try await userRef.collection("categories").getDocuments()
+            
+            var categories: [Category] = []
+            for document in querySnapshot.documents {
+                let data = document.data()
+                if let categoryName = data["categoryName"] as? String {
+                    let category = Category(id: document.documentID, name: categoryName)
+                    categories.append(category)
+                }
+            }
+            
+            return categories
+        } catch {
+            print("Error fetching categories: \(error.localizedDescription)")
+            if let authError = error as? AuthError {
+                throw authError
+            } else {
+                throw FirestoreError.firestoreError(description: error.localizedDescription)
+            }
+        }
+    }
+    
+    func deleteCategory(_ category: Category) async throws {
+           guard let userID = currentUser?.uid else {
+               throw AuthError.userNotLoggedIn
+           }
+           
+           let userRef = db.collection("users").document(userID)
+           let categoryRef = userRef.collection("categories").document(category.id)
+           
+           do {
+               try await categoryRef.delete()
+               print("Category deleted successfully!")
+           } catch {
+               throw error
+           }
+       }
+}
+
+
 
 //MARK: - errors dictionary
 
@@ -229,5 +322,10 @@ enum AuthError: Error {
     case networkError
     case signInFailed
     case NoEmailError
+    case userNotLoggedIn
     // Add more cases as needed for other authentication errors
+}
+
+enum FirestoreError: Error {
+    case firestoreError(description: String)
 }
