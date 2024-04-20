@@ -89,19 +89,6 @@ final class LoginWithEmailModel: ObservableObject {
             throw error
         }
     }
-    
-    func deleteAccount() async throws {
-        do {
-            try await authManager.deleteAccount() // Call the delete method from AuthManager
-            // Handle successful account deletion
-        } catch {
-            print("Error deleting account: \(error.localizedDescription)")
-            throw error
-        }
-    }
-    
-    
-    
 }
 
 
@@ -143,8 +130,8 @@ protocol AuthManagerProtocol {
 final class AuthManager: AuthManagerProtocol{
     
     private var currentUser: User? {
-           return Auth.auth().currentUser
-       }
+        return Auth.auth().currentUser
+    }
     private let db = Firestore.firestore()
     
     // MARK: - Get authenticated user
@@ -215,13 +202,47 @@ extension AuthManager{
         return AuthDataResultModel(user: authDataResult.user)
     }
     
-    func deleteAccount() async throws{
+    func deleteAccount() async throws {
         guard let user = Auth.auth().currentUser else {
-            throw URLError(.badURL)
+            throw AuthError.noCurrentUser
         }
-        try await user.delete()
+        
+        let uid = user.uid
+        
+        do {
+            try await user.delete()
+        } catch {
+            throw AuthError.deleteFailed(error.localizedDescription)
+        }
+        
+        do {
+            let userDocRef = db.collection("users").document(uid)
+            let userCatRef = db.collection("users").document(uid).collection("categories")
+            
+            try await deleteAllDocumentsInSubcollection(userCatRef)
+            try await userDocRef.delete()
+            
+            // Deletion succeeded
+            print("Document and subcollection deleted successfully")
+        } catch {
+            // Print detailed error message
+            print("Error deleting document and subcollection: \(error.localizedDescription)")
+            
+            // Throw FirestoreError with the specific error message
+            throw FirestoreError.deleteFailed(error.localizedDescription)
+        }
     }
     
+    private func deleteAllDocumentsInSubcollection(_ collectionRef: CollectionReference) async throws {
+        // Fetch all documents within the subcollection
+        let querySnapshot = try await collectionRef.getDocuments()
+        
+        // Delete each document within the subcollection
+        for document in querySnapshot.documents {
+            let documentRef = collectionRef.document(document.documentID)
+            try await documentRef.delete()
+        }
+    }
 }
 
 //MARK: - Category model to store retrieved data model
@@ -293,23 +314,21 @@ extension AuthManager {
     }
     
     func deleteCategory(_ category: Category) async throws {
-           guard let userID = currentUser?.uid else {
-               throw AuthError.userNotLoggedIn
-           }
-           
-           let userRef = db.collection("users").document(userID)
-           let categoryRef = userRef.collection("categories").document(category.id)
-           
-           do {
-               try await categoryRef.delete()
-               print("Category deleted successfully!")
-           } catch {
-               throw error
-           }
-       }
+        guard let userID = currentUser?.uid else {
+            throw AuthError.userNotLoggedIn
+        }
+        
+        let userRef = db.collection("users").document(userID)
+        let categoryRef = userRef.collection("categories").document(category.id)
+        
+        do {
+            try await categoryRef.delete()
+            print("Category deleted successfully!")
+        } catch {
+            throw error
+        }
+    }
 }
-
-
 
 //MARK: - errors dictionary
 
@@ -323,9 +342,12 @@ enum AuthError: Error {
     case signInFailed
     case NoEmailError
     case userNotLoggedIn
+    case noCurrentUser
+    case deleteFailed(String)
     // Add more cases as needed for other authentication errors
 }
 
 enum FirestoreError: Error {
     case firestoreError(description: String)
+    case deleteFailed(String)
 }

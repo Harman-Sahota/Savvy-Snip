@@ -29,7 +29,7 @@ final class CategoryViewModel: ObservableObject {
         errorMessage = "An error occurred. Please try again."
     }
     
-    func deleteAccount() {
+    func deleteAccount() async{
         Task {
             do {
                 try await authManager.deleteAccount()
@@ -130,6 +130,7 @@ struct CategoryView: View {
                 .onDelete(perform: viewModel.deleteCategory)
             }
             .searchable(text: $searchText)
+            
             .navigationBarTitle("Your Categories", displayMode: .large)
             .navigationBarItems(trailing:
                                     Button(action: {
@@ -150,6 +151,19 @@ struct CategoryView: View {
                 )
             }
             .navigationViewStyle(StackNavigationViewStyle())
+            Button(action: {
+                Task{
+                    await viewModel.deleteAccount()
+                    showSignInView = true
+                }
+            }) {
+                Text("Delete Account")
+                    .foregroundColor(.red)
+                    .padding(.vertical, 4)
+                    .padding(.horizontal, 12)
+                    .background(Color.clear)
+                    .padding()
+            }
         }
         .contentShape(Rectangle()) // Ensure the VStack is tappable
         .id(loginState)
