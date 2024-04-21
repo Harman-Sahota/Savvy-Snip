@@ -47,6 +47,7 @@
 		518F39252BC5DBA000A8CB08 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518F39242BC5DBA000A8CB08 /* AuthManager.swift */; };
 		518F39262BC5DBA000A8CB08 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518F39242BC5DBA000A8CB08 /* AuthManager.swift */; };
 		51AF15502BD2BECF001F5E48 /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AF154F2BD2BECF001F5E48 /* AddCategoryView.swift */; };
+		51DCFA7D2BD5844700C5AB89 /* RenameCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DCFA7C2BD5844700C5AB89 /* RenameCategoryView.swift */; };
 		51E1271B2BD2F830009DEAB0 /* SnipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E1271A2BD2F830009DEAB0 /* SnipsView.swift */; };
 		51F5FD792BCC4E8D00A9799A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 51F5FD782BCC4E8D00A9799A /* FirebaseFirestoreSwift */; };
 		51F5FD7B2BCC4E9B00A9799A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 51F5FD7A2BCC4E9B00A9799A /* FirebaseFirestoreSwift */; };
@@ -83,6 +84,7 @@
 		518F391F2BC5D67800A8CB08 /* FireBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseManager.swift; sourceTree = "<group>"; };
 		518F39242BC5DBA000A8CB08 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		51AF154F2BD2BECF001F5E48 /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
+		51DCFA7C2BD5844700C5AB89 /* RenameCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenameCategoryView.swift; sourceTree = "<group>"; };
 		51E1271A2BD2F830009DEAB0 /* SnipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnipsView.swift; sourceTree = "<group>"; };
 		51F778702BC5F0120013BF13 /* LoginWithEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithEmail.swift; sourceTree = "<group>"; };
 		51F778722BC5F0CE0013BF13 /* RegisterWithEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterWithEmail.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				518F335E2BC98CA000C9941A /* CategoryView.swift */,
 				51AF154F2BD2BECF001F5E48 /* AddCategoryView.swift */,
 				51E1271A2BD2F830009DEAB0 /* SnipsView.swift */,
+				51DCFA7C2BD5844700C5AB89 /* RenameCategoryView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				517EA4A02BC9DE8C00D9B47D /* Utilities.swift in Sources */,
 				518F39252BC5DBA000A8CB08 /* AuthManager.swift in Sources */,
 				517EA4A32BC9E57400D9B47D /* SignInGoogleHelper.swift in Sources */,
+				51DCFA7D2BD5844700C5AB89 /* RenameCategoryView.swift in Sources */,
 				51011E412BC438EB00E39B80 /* ContentView.swift in Sources */,
 				51011E3F2BC438EB00E39B80 /* Savvy_Snip_iosApp.swift in Sources */,
 				51AF15502BD2BECF001F5E48 /* AddCategoryView.swift in Sources */,

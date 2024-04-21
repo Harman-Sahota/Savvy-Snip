@@ -124,6 +124,7 @@ protocol AuthManagerProtocol {
     func resetPassword(email: String) async throws
     func deleteAccount() async throws
     func updateCategoryOrder(_ categories: [Category]) async throws
+    func updateCategoryName(categoryId: String, newName: String) async throws
 }
 
 //MARK: - Class that handles all firebase methods
@@ -248,10 +249,14 @@ extension AuthManager{
 
 //MARK: - Category model to store retrieved data model
 
-struct Category{
+struct Category:Identifiable, Equatable{
     var id: String
     var name: String
     var order: Int
+    
+    static func == (lhs: Category, rhs: Category) -> Bool {
+            return lhs.id == rhs.id
+        }
 }
 
 //MARK: - Save category data - firestore db
@@ -365,6 +370,21 @@ extension AuthManager {
         
         print("Category order updated successfully!")
     }
+    
+    func updateCategoryName(categoryId: String, newName: String) async throws {
+           guard let currentUser = Auth.auth().currentUser else {
+               throw AuthError.userNotLoggedIn
+           }
+           
+           let userRef = db.collection("users").document(currentUser.uid)
+           let categoryRef = userRef.collection("categories").document(categoryId)
+           
+           do {
+               try await categoryRef.updateData(["categoryName": newName])
+           } catch {
+               throw FirestoreError.firestoreError(description: error.localizedDescription)
+           }
+       }
 }
 
 //MARK: - errors dictionary

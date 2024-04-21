@@ -94,6 +94,8 @@ struct CategoryView: View {
     @State private var searchText = ""
     @State private var isShowingAddCategorySheet = false
     @State private var loginState = UUID()
+    @State private var selectedCategory: Category?
+    @State private var isShowingRenameSheet = false
     
     var body: some View {
         VStack {
@@ -134,12 +136,34 @@ struct CategoryView: View {
                     NavigationLink(destination: SnipsView(categoryName: category.name)) {
                         Text(category.name)
                             .padding(.vertical, 8)
+                            .contextMenu {
+                                Button(action: {
+                                    selectedCategory = category
+                                }) {
+                                    Label("Rename", systemImage: "pencil")
+                                }
+                            }
+                            .onTapGesture {
+                                selectedCategory = category
+                            }
+                            .sheet(item: $selectedCategory) { selectedCategory in
+                                RenameCategoryView(
+                                    isShowingSheet: $isShowingRenameSheet,
+                                    categoryId: selectedCategory.id
+                                )
+                                .onDisappear {
+                                    Task {
+                                        await viewModel.fetchCategories()
+                                    }
+                                }
+                            }
                     }
                 }
                 .onMove(perform: viewModel.reorderCategories)
                 .onDelete(perform: viewModel.deleteCategory)
             }
             .searchable(text: $searchText)
+            
             
             .navigationBarTitle("Your Categories", displayMode: .large)
             .navigationBarItems(trailing:
@@ -193,8 +217,7 @@ struct CategoryView: View {
 }
 
 
-
-//MARK: -  Preview
+//MARK: - Preview
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
@@ -202,4 +225,5 @@ struct CategoryView_Previews: PreviewProvider {
         }
     }
 }
+
 
