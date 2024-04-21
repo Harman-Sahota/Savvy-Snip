@@ -100,6 +100,7 @@ struct CategoryView: View {
     var body: some View {
         VStack {
             HStack {
+                //MARK: - Add Category Button
                 Button(action: {
                     isShowingAddCategorySheet = true
                 }) {
@@ -130,6 +131,8 @@ struct CategoryView: View {
             }
             .padding(.horizontal)
             .padding(.top, 10)
+            
+            //MARK: - Main List view of categories w/ renaming and dragging capability
             
             List {
                 ForEach(viewModel.filteredCategories(for: searchText), id: \.id) { category in
@@ -164,6 +167,7 @@ struct CategoryView: View {
             }
             .searchable(text: $searchText)
             
+            //MARK: - Nav title and items 
             
             .navigationBarTitle("Your Categories", displayMode: .large)
             .navigationBarItems(trailing:
