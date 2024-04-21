@@ -2,7 +2,7 @@
 
 ![Savvy Snip Logo](logo.svg)
 
-Last Updated: April 12 2024
+Last Updated: April 21 2024
 
 Welcome to Savvy Snip, your future go-to tool for storing, organizing, and accessing code snippets with ease. Whether you're a seasoned developer or just getting started, Savvy Snip is designed to streamline your workflow and boost your coding efficiency. Say goodbye to repetitive Google searches and hello to a seamless coding experience.
 
@@ -13,7 +13,6 @@ Welcome to Savvy Snip, your future go-to tool for storing, organizing, and acces
 - [Use Cases](#use-cases)
 - [Future Developments](#future-developments)
 - [Version History](#version-history)
-- [Web Version](#web-version)
 - [Sign Up for the Waitlist](#sign-up-for-the-waitlist)
 
 ## Creator
@@ -78,9 +77,6 @@ Please note that the features mentioned above represent the MVP (Minimum Viable 
 
 #### Macbook Menu Bar Attachment
 <img src="Mockups/mac/macscreen.png" alt="Macbook menu bar design" width="900">
-
-## Web Version
-In addition to the desktop application, we are also planning to launch a web version of Savvy Snip, providing even more flexibility in accessing and managing your code snippets. More details will be shared as we progress with development.
 
 ## Sign Up for the Waitlist
 
