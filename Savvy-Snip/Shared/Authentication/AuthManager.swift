@@ -123,6 +123,7 @@ protocol AuthManagerProtocol {
     func getAuthenticatedUser() throws -> AuthDataResultModel?
     func resetPassword(email: String) async throws
     func deleteAccount() async throws
+    func updateCategoryOrder(_ categories: [Category]) async throws
 }
 
 //MARK: - Class that handles all firebase methods
@@ -250,6 +251,7 @@ extension AuthManager{
 struct Category{
     var id: String
     var name: String
+    var order: Int
 }
 
 //MARK: - Save category data - firestore db
@@ -263,21 +265,37 @@ extension AuthManager{
         }
         
         let userRef = db.collection("users").document(userID)
-        let categoryData: [String: Any] = [
-            "categoryName": categoryName
-        ]
         
-        // Add a new document to the "categories" subcollection
-        userRef.collection("categories").addDocument(data: categoryData) { error in
+        // Fetch existing categories to determine the next order value
+        userRef.collection("categories").getDocuments { snapshot, error in
             if let error = error {
-                print("Error adding category: \(error.localizedDescription)")
+                print("Error fetching categories: \(error.localizedDescription)")
                 completion(error)
-            } else {
-                print("Category added successfully!")
-                completion(nil)
+                return
+            }
+            
+            // Determine the next order value
+            let maxOrder = snapshot?.documents.compactMap { $0.data()["order"] as? Int }.max() ?? -1
+            let newOrder = maxOrder + 1
+            
+            let categoryData: [String: Any] = [
+                "categoryName": categoryName,
+                "order": newOrder
+            ]
+            
+            // Add a new document to the "categories" subcollection with calculated order
+            userRef.collection("categories").addDocument(data: categoryData) { error in
+                if let error = error {
+                    print("Error adding category: \(error.localizedDescription)")
+                    completion(error)
+                } else {
+                    print("Category added successfully!")
+                    completion(nil)
+                }
             }
         }
     }
+    
 }
 
 //MARK: - retrieve and delete category data - firestore db
@@ -291,13 +309,16 @@ extension AuthManager {
         let userRef = db.collection("users").document(userID)
         
         do {
-            let querySnapshot = try await userRef.collection("categories").getDocuments()
+            let querySnapshot = try await userRef.collection("categories")
+                .order(by: "order")
+                .getDocuments()
             
             var categories: [Category] = []
             for document in querySnapshot.documents {
                 let data = document.data()
-                if let categoryName = data["categoryName"] as? String {
-                    let category = Category(id: document.documentID, name: categoryName)
+                if let categoryName = data["categoryName"] as? String,
+                   let order = data["order"] as? Int {
+                    let category = Category(id: document.documentID, name: categoryName, order: order)
                     categories.append(category)
                 }
             }
@@ -327,6 +348,22 @@ extension AuthManager {
         } catch {
             throw error
         }
+    }
+    
+    func updateCategoryOrder(_ categories: [Category]) async throws {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            throw AuthError.userNotLoggedIn
+        }
+        
+        let userRef = db.collection("users").document(userID)
+        
+        for (index, category) in categories.enumerated() {
+            let categoryRef = userRef.collection("categories").document(category.id)
+            
+            try await categoryRef.updateData(["order": index])
+        }
+        
+        print("Category order updated successfully!")
     }
 }
 

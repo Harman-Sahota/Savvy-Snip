@@ -1,54 +1,59 @@
 import SwiftUI
 import Combine
 
-//MARK: - View model to handle logging out
+//MARK: - Category View Model
 @MainActor
 final class CategoryViewModel: ObservableObject {
     private let authManager = AuthManager()
+    
     @Published var categories: [Category] = []
     @Published var showErrorAlert = false
-    @Published var errorMessage = "An error occurred during logout. Please try again."
+    @Published var errorMessage = "An error occurred. Please try again."
     
     func logOut() {
         Task {
             do {
                 try await authManager.signOut()
-                self.reset()
+                reset()
             } catch {
-                print("Error logging out: \(error.localizedDescription)")
-                self.errorMessage = "Error logging out: \(error.localizedDescription)"
-                self.showErrorAlert = true
+                errorMessage = "Error logging out: \(error.localizedDescription)"
+                showErrorAlert = true
             }
         }
     }
     
-    // Function to reset state
-    func reset() {
-        categories = []
-        showErrorAlert = false
-        errorMessage = "An error occurred. Please try again."
-    }
-    
-    func deleteAccount() async{
+    func deleteAccount() async {
         Task {
             do {
                 try await authManager.deleteAccount()
             } catch {
-                print("Error deleting account: \(error.localizedDescription)")
-                self.errorMessage = "Error Deleting Account: \(error.localizedDescription)"
-                self.showErrorAlert = true
+                errorMessage = "Error deleting account: \(error.localizedDescription)"
+                showErrorAlert = true
             }
         }
     }
     
     func fetchCategories() async {
-        do {
-            self.categories = try await authManager.getCategories()
-        } catch {
-            print("Error fetching categories: \(error.localizedDescription)")
-            DispatchQueue.main.async {
-                self.errorMessage = "Error fetching categories: \(error.localizedDescription)"
-                self.showErrorAlert = true
+        Task {
+            do {
+                categories = try await authManager.getCategories()
+            } catch {
+                errorMessage = "Error fetching categories: \(error.localizedDescription)"
+                showErrorAlert = true
+            }
+        }
+    }
+    
+    func reorderCategories(from sourceIndexSet: IndexSet, to destinationIndex: Int) {
+        guard sourceIndexSet.count == 1 else { return }
+        categories.move(fromOffsets: sourceIndexSet, toOffset: destinationIndex)
+        
+        Task {
+            do {
+                try await authManager.updateCategoryOrder(categories)
+            } catch {
+                errorMessage = "Error updating category order: \(error.localizedDescription)"
+                showErrorAlert = true
             }
         }
     }
@@ -60,15 +65,19 @@ final class CategoryViewModel: ObservableObject {
         Task {
             do {
                 try await authManager.deleteCategory(categoryToDelete)
-                await fetchCategories()
+                await fetchCategories() // Reload categories after deletion
             } catch {
-                print("Error deleting category: \(error.localizedDescription)")
-                self.errorMessage = "Error deleting category: \(error.localizedDescription)"
-                self.showErrorAlert = true
+                errorMessage = "Error deleting category: \(error.localizedDescription)"
+                showErrorAlert = true
             }
         }
     }
     
+    private func reset() {
+        categories = []
+        showErrorAlert = false
+        errorMessage = "An error occurred. Please try again."
+    }
     func filteredCategories(for searchText: String) -> [Category] {
         if searchText.isEmpty {
             return categories
@@ -127,6 +136,7 @@ struct CategoryView: View {
                             .padding(.vertical, 8)
                     }
                 }
+                .onMove(perform: viewModel.reorderCategories)
                 .onDelete(perform: viewModel.deleteCategory)
             }
             .searchable(text: $searchText)
@@ -181,6 +191,8 @@ struct CategoryView: View {
         }
     }
 }
+
+
 
 //MARK: -  Preview
 struct CategoryView_Previews: PreviewProvider {
