@@ -36,8 +36,6 @@ struct RenameCategoryView: View {
             
             Button(action: {
                 saveCategory()
-                isShowingSheet = false
-                
             }) {
                 Text("Save")
                     .font(.headline)
@@ -63,17 +61,18 @@ struct RenameCategoryView: View {
     private func saveCategory() {
         Task {
             do {
+                // Perform category name update
                 try await AuthManager().updateCategoryName(categoryId: categoryId, newName: newName)
+                // Dismiss the sheet on successful update
                 DispatchQueue.main.async {
-                    presentationMode.wrappedValue.dismiss() 
+                    presentationMode.wrappedValue.dismiss()
                 }
             } catch {
+                // Handle error and update error message
                 errorMessage = "Error renaming category: \(error.localizedDescription)"
             }
         }
     }
-
-
 }
 
 struct RenameCategoryView_Previews: PreviewProvider {

@@ -139,35 +139,41 @@ struct CategoryView: View {
                     NavigationLink(destination: SnipsView(categoryName: category.name)) {
                         Text(category.name)
                             .padding(.vertical, 8)
-                            .contextMenu {
-                                Button(action: {
-                                    selectedCategory = category
-                                }) {
-                                    Label("Rename", systemImage: "pencil")
-                                }
-                            }
-                            .onTapGesture {
-                                selectedCategory = category
-                            }
-                            .sheet(item: $selectedCategory) { selectedCategory in
-                                RenameCategoryView(
-                                    isShowingSheet: $isShowingRenameSheet,
-                                    categoryId: selectedCategory.id
-                                )
-                                .onDisappear {
-                                    Task {
-                                        await viewModel.fetchCategories()
-                                    }
-                                }
-                            }
+                    }
+                    .contextMenu {
+                        Button(action: {
+                            // Handle rename action
+                            selectedCategory = category
+                            isShowingRenameSheet = true
+                        }) {
+                            Label("Rename", systemImage: "pencil")
+                        }
+                    }
+                    .onTapGesture {
+                        // Handle normal tap for navigation
+                        selectedCategory = category
                     }
                 }
-                .onMove(perform: viewModel.reorderCategories)
                 .onDelete(perform: viewModel.deleteCategory)
+                .onMove(perform: viewModel.reorderCategories)
             }
             .searchable(text: $searchText)
+            .sheet(isPresented: $isShowingRenameSheet) {
+                if let selectedCategory = selectedCategory {
+                    RenameCategoryView(
+                        isShowingSheet: $isShowingRenameSheet,
+                        categoryId: selectedCategory.id
+                    )
+                    .onDisappear {
+                        Task {
+                            await viewModel.fetchCategories()
+                        }
+                    }
+                }
+            }
+
             
-            //MARK: - Nav title and items 
+            //MARK: - Nav title and items
             
             .navigationBarTitle("Your Categories", displayMode: .large)
             .navigationBarItems(trailing:
