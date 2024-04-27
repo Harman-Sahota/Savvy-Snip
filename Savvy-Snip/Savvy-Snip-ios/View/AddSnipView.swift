@@ -6,16 +6,16 @@ struct HighlightedCodeView: UIViewRepresentable {
     @Environment(\.colorScheme) var colorScheme
     @State private var selectedTheme: String = ""
     
-    let lightTheme = "paraiso-light"
-    let darkTheme = "paraiso-dark"
+    let lightTheme = "atom-one-dark"
+    let darkTheme = "mono-blue"
     
     
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
         textView.isEditable = false
-        textView.isSelectable = false
-        textView.backgroundColor = UIColor.systemBackground
-        textView.font = UIFont.systemFont(ofSize: 16)
+        textView.isSelectable = true
+        textView.backgroundColor = UIColor(Color.clear)  // Light blue color
+        textView.font = UIFont.systemFont(ofSize: 30)
         return textView
     }
     
@@ -23,7 +23,8 @@ struct HighlightedCodeView: UIViewRepresentable {
         let highlightr = Highlightr()
         if colorScheme == .dark {
             selectedTheme = darkTheme
-        } else {
+        }
+        if colorScheme == .light  {
             selectedTheme = lightTheme
         }
         highlightr?.setTheme(to: selectedTheme)
@@ -34,7 +35,6 @@ struct HighlightedCodeView: UIViewRepresentable {
         setTheme()
         
         if let highlightedCode = highlightr?.highlight(code, fastRender: true) {
-            print("Highlighted Code: \(highlightedCode)")
             uiView.attributedText = highlightedCode
         } else {
             print("Code could not be highlighted")
@@ -45,16 +45,9 @@ struct HighlightedCodeView: UIViewRepresentable {
 
 struct AddSnipView: View {
     @Binding var isPresented: Bool
-    
     @State private var title: String = ""
-    @State private var selectedLanguageIndex: Int? = nil
     @State private var code: String = ""
-    
-    // Get the list of supported languages and sort them alphabetically
-    var supportedLanguages: [String] {
-        let highlightr = Highlightr()
-        return highlightr?.supportedLanguages().sorted() ?? []
-    }
+    @State private var showError: Bool = false
     
     var body: some View {
         ScrollView {
@@ -112,7 +105,7 @@ struct AddSnipView: View {
                 // Display the highlighted code in real-time
                 HighlightedCodeView(code: $code)
                     .frame(maxWidth: .infinity, minHeight: 200) // Set a minHeight for the HighlightedCodeView
-                    .background(Color(UIColor.systemBackground))
+                    .background(Color.clear)
                     .cornerRadius(10)
                     .padding(.horizontal)
                     .overlay(
@@ -121,8 +114,13 @@ struct AddSnipView: View {
                     )
                 
                 Button(action: {
-                    // Save action
-                    isPresented = false // Close the sheet view
+                    // Validation
+                    if title.isEmpty || code.isEmpty {
+                        showError = true
+                    } else {
+                        // Save action
+                        isPresented = false // Close the sheet view
+                    }
                 }) {
                     Text("Save")
                         .font(.headline)
@@ -134,8 +132,9 @@ struct AddSnipView: View {
                         .padding(.horizontal)
                 }
                 .padding(.horizontal)
-                .disabled(title.isEmpty || code.isEmpty) // Check if any field is empty
-                .opacity(title.isEmpty || code.isEmpty ? 0.5 : 1.0) // Adjust opacity based on disabled state
+                .alert(isPresented: $showError) {
+                    Alert(title: Text("Error"), message: Text("Please fill in all fields."), dismissButton: .default(Text("OK")))
+                }
             }
             .padding()
         }
