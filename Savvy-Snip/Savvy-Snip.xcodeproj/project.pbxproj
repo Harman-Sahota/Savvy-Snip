@@ -47,6 +47,8 @@
 		518F39212BC5D67800A8CB08 /* FireBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518F391F2BC5D67800A8CB08 /* FireBaseManager.swift */; };
 		518F39252BC5DBA000A8CB08 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518F39242BC5DBA000A8CB08 /* AuthManager.swift */; };
 		518F39262BC5DBA000A8CB08 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518F39242BC5DBA000A8CB08 /* AuthManager.swift */; };
+		51ACB0752BDD74F500F053B7 /* Highlightr in Frameworks */ = {isa = PBXBuildFile; productRef = 51ACB0742BDD74F500F053B7 /* Highlightr */; };
+		51ACB0772BDD751500F053B7 /* Highlightr in Frameworks */ = {isa = PBXBuildFile; productRef = 51ACB0762BDD751500F053B7 /* Highlightr */; };
 		51AF15502BD2BECF001F5E48 /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AF154F2BD2BECF001F5E48 /* AddCategoryView.swift */; };
 		51DCFA7D2BD5844700C5AB89 /* RenameCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DCFA7C2BD5844700C5AB89 /* RenameCategoryView.swift */; };
 		51E1271B2BD2F830009DEAB0 /* SnipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E1271A2BD2F830009DEAB0 /* SnipsView.swift */; };
@@ -56,6 +58,19 @@
 		51F778732BC5F0CE0013BF13 /* RegisterWithEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F778722BC5F0CE0013BF13 /* RegisterWithEmail.swift */; };
 		51F778772BC5FB780013BF13 /* HomeMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F778762BC5FB780013BF13 /* HomeMenu.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		51CFEE442BDD71DC001B44B0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		51011E3B2BC438EB00E39B80 /* Savvy-Snip-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Savvy-Snip-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51ACB0752BDD74F500F053B7 /* Highlightr in Frameworks */,
 				517EA4952BC9D84100D9B47D /* GoogleSignIn in Frameworks */,
 				518F39122BC5D5EF00A8CB08 /* FirebaseAnalyticsSwift in Frameworks */,
 				518F39162BC5D5EF00A8CB08 /* FirebaseFirestore in Frameworks */,
@@ -117,6 +133,7 @@
 				518F391A2BC5D61000A8CB08 /* FirebaseAnalyticsSwift in Frameworks */,
 				518F391E2BC5D61000A8CB08 /* FirebaseFirestore in Frameworks */,
 				51F5FD792BCC4E8D00A9799A /* FirebaseFirestoreSwift in Frameworks */,
+				51ACB0772BDD751500F053B7 /* Highlightr in Frameworks */,
 				517EA49B2BC9D86200D9B47D /* GoogleSignInSwift in Frameworks */,
 				518F391C2BC5D61000A8CB08 /* FirebaseAuth in Frameworks */,
 				518F39182BC5D61000A8CB08 /* FirebaseAnalytics in Frameworks */,
@@ -133,7 +150,6 @@
 				51011E3D2BC438EB00E39B80 /* Savvy-Snip-ios */,
 				51011E4F2BC4390000E39B80 /* Savvy-Snip-macOS */,
 				51011E3C2BC438EB00E39B80 /* Products */,
-				51F5FD772BCC4E8D00A9799A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -247,13 +263,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		51F5FD772BCC4E8D00A9799A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -264,6 +273,7 @@
 				51011E372BC438EB00E39B80 /* Sources */,
 				51011E382BC438EB00E39B80 /* Frameworks */,
 				51011E392BC438EB00E39B80 /* Resources */,
+				51CFEE442BDD71DC001B44B0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -278,6 +288,7 @@
 				517EA4942BC9D84100D9B47D /* GoogleSignIn */,
 				517EA4962BC9D84100D9B47D /* GoogleSignInSwift */,
 				51F5FD7A2BCC4E9B00A9799A /* FirebaseFirestoreSwift */,
+				51ACB0742BDD74F500F053B7 /* Highlightr */,
 			);
 			productName = "Savvy-Snip-ios";
 			productReference = 51011E3B2BC438EB00E39B80 /* Savvy-Snip-ios.app */;
@@ -304,6 +315,7 @@
 				517EA4982BC9D86200D9B47D /* GoogleSignIn */,
 				517EA49A2BC9D86200D9B47D /* GoogleSignInSwift */,
 				51F5FD782BCC4E8D00A9799A /* FirebaseFirestoreSwift */,
+				51ACB0762BDD751500F053B7 /* Highlightr */,
 			);
 			productName = "Savvy-Snip-macOS";
 			productReference = 51011E4E2BC4390000E39B80 /* Savvy-Snip-macOS.app */;
@@ -339,6 +351,7 @@
 			packageReferences = (
 				518F390E2BC5D5EF00A8CB08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				517EA4932BC9D84100D9B47D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				51ACB0732BDD74F500F053B7 /* XCRemoteSwiftPackageReference "Highlightr" */,
 			);
 			productRefGroup = 51011E3C2BC438EB00E39B80 /* Products */;
 			projectDirPath = "";
@@ -422,12 +435,16 @@
 		51011E352BC438C400E39B80 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Debug;
 		};
 		51011E362BC438C400E39B80 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Release;
 		};
@@ -501,7 +518,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -590,7 +607,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -688,7 +705,7 @@
 					"@executable_path/../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -771,7 +788,7 @@
 					"@executable_path/../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -831,6 +848,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 10.24.0;
+			};
+		};
+		51ACB0732BDD74F500F053B7 /* XCRemoteSwiftPackageReference "Highlightr" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raspu/Highlightr";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -895,6 +920,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 518F390E2BC5D5EF00A8CB08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		51ACB0742BDD74F500F053B7 /* Highlightr */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 51ACB0732BDD74F500F053B7 /* XCRemoteSwiftPackageReference "Highlightr" */;
+			productName = Highlightr;
+		};
+		51ACB0762BDD751500F053B7 /* Highlightr */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 51ACB0732BDD74F500F053B7 /* XCRemoteSwiftPackageReference "Highlightr" */;
+			productName = Highlightr;
 		};
 		51F5FD782BCC4E8D00A9799A /* FirebaseFirestoreSwift */ = {
 			isa = XCSwiftPackageProductDependency;

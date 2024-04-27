@@ -1,26 +1,45 @@
 import SwiftUI
+import Highlightr
 
-struct SearchableDropdown<T: Hashable>: View {
-    @Binding var selectedItem: T?
-    var items: [T]
-    var label: String
+struct HighlightedCodeView: UIViewRepresentable {
+    @Binding var code: String
+    @Environment(\.colorScheme) var colorScheme
+    @State private var selectedTheme: String = ""
     
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text(label)
-                .font(.headline)
-            
-            Picker(selection: $selectedItem, label: Text("")) {
-                ForEach(items, id: \.self) { item in
-                    Text("\(item)")
-                        .tag(item as T?)
-                }
-            }
-            .pickerStyle(WheelPickerStyle()) // Use WheelPickerStyle for an Apple-style scroll selector
-            .frame(height: 150) // Adjust the height of the picker
-            .clipped() // Clip content to avoid overflow
+    let lightTheme = "paraiso-light"
+    let darkTheme = "paraiso-dark"
+    
+    
+    func makeUIView(context: Context) -> UITextView {
+        let textView = UITextView()
+        textView.isEditable = false
+        textView.isSelectable = false
+        textView.backgroundColor = UIColor.systemBackground
+        textView.font = UIFont.systemFont(ofSize: 16)
+        return textView
+    }
+    
+    private func setTheme() {
+        let highlightr = Highlightr()
+        if colorScheme == .dark {
+            selectedTheme = darkTheme
+        } else {
+            selectedTheme = lightTheme
         }
-        .padding()
+        highlightr?.setTheme(to: selectedTheme)
+    }
+    
+    func updateUIView(_ uiView: UITextView, context: Context) {
+        let highlightr = Highlightr()
+        setTheme()
+        
+        if let highlightedCode = highlightr?.highlight(code, fastRender: true) {
+            print("Highlighted Code: \(highlightedCode)")
+            uiView.attributedText = highlightedCode
+        } else {
+            print("Code could not be highlighted")
+            uiView.text = code
+        }
     }
 }
 
@@ -28,22 +47,45 @@ struct AddSnipView: View {
     @Binding var isPresented: Bool
     
     @State private var title: String = ""
-    @State private var selectedCategory: String? = nil
-    @State private var code: String = "" // Add state for the code
+    @State private var selectedLanguageIndex: Int? = nil
+    @State private var code: String = ""
     
-    let categories = ["Swift", "Python", "JavaScript", "Java", "C#", "Shell"] // Sample categories
+    // Get the list of supported languages and sort them alphabetically
+    var supportedLanguages: [String] {
+        let highlightr = Highlightr()
+        return highlightr?.supportedLanguages().sorted() ?? []
+    }
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(spacing: 20) {
-                    Text("Add A Snip")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .padding(.top, 20)
+        ScrollView {
+            VStack(spacing: 20) {
+                Text("Add A Snip")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .padding(.top, 20)
+                    .foregroundColor(Color.primary)
+                
+                TextField("Title", text: $title)
+                    .padding()
+                    .foregroundColor(.primary)
+                    .font(.body)
+                    .background(Color(UIColor.systemBackground))
+                    .cornerRadius(10)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    .frame(maxWidth: .infinity)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray, lineWidth: 1)
+                    )
+                
+                VStack(alignment: .leading) {
+                    Text("Code")
+                        .font(.headline)
                         .foregroundColor(Color.primary)
                     
-                    TextField("Title", text: $title)
+                    // Text field for code input
+                    TextEditor(text: $code)
                         .padding()
                         .foregroundColor(.primary)
                         .font(.body)
@@ -51,68 +93,52 @@ struct AddSnipView: View {
                         .cornerRadius(10)
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity, minHeight: 100, maxHeight: .infinity)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(Color.gray, lineWidth: 1)
                         )
-                    
-                    SearchableDropdown(selectedItem: $selectedCategory, items: categories, label: "Type")
-
-                    
-                    VStack(alignment: .leading) {
-                        Text("Code")
-                            .font(.headline)
-                            .foregroundColor(Color.primary)
-                        
-                        ZStack(alignment: .topLeading) {
-                            Color(UIColor.systemBackground)
-                                .cornerRadius(10.0)
-                                .shadow(radius: 2)
-                            
-                            TextEditor(text: $code)
-                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 100, maxHeight: .infinity)
-                                .padding()
-                                .cornerRadius(10.0)
-                                .foregroundColor(.primary)
-                                .disableAutocorrection(true)
+                        .onChange(of: code) { newValue in
+                            // Update the code whenever it changes
+                            code = newValue
                         }
-                        .frame(height: 150) // Adjust height
-                        .border(Color.gray, width: 1)
-                        .padding()
-                    }
-                    .padding(.horizontal)
-                    
-                    Button(action: {
-                        // Save action
-                        isPresented = false // Close the sheet view
-                    }) {
-                        Text("Save")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.blue)
-                            .cornerRadius(10)
-                            .padding(.horizontal)
-                    }
-                    .padding(.horizontal)
-                    .disabled(title.isEmpty || selectedCategory == nil || code.isEmpty) // Check if any field is empty
-                    .opacity(title.isEmpty || selectedCategory == nil || code.isEmpty ? 0.5 : 1.0) // Adjust opacity based on disabled state
-                    
-                    Spacer() // Add spacer to push content to the top
-                        .frame(height: 200) // Add extra space at the bottom
                 }
-                .padding()
+                .padding(.horizontal)
+                
+                Text("Your Code")
+                    .font(.headline)
+                    .foregroundColor(Color.primary)
+                
+                // Display the highlighted code in real-time
+                HighlightedCodeView(code: $code)
+                    .frame(maxWidth: .infinity, minHeight: 200) // Set a minHeight for the HighlightedCodeView
+                    .background(Color(UIColor.systemBackground))
+                    .cornerRadius(10)
+                    .padding(.horizontal)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray, lineWidth: 1)
+                    )
+                
+                Button(action: {
+                    // Save action
+                    isPresented = false // Close the sheet view
+                }) {
+                    Text("Save")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                }
+                .padding(.horizontal)
+                .disabled(title.isEmpty || code.isEmpty) // Check if any field is empty
+                .opacity(title.isEmpty || code.isEmpty ? 0.5 : 1.0) // Adjust opacity based on disabled state
             }
-            .onTapGesture {
-                hideKeyboard() // Hide keyboard when tapped outside of text fields
-            }
+            .padding()
         }
-    }
-    
-    private func hideKeyboard() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 
