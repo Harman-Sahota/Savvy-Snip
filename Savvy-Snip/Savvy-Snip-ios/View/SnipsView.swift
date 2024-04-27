@@ -2,13 +2,14 @@ import SwiftUI
 
 struct SnipsView: View {
     let categoryName: String
+    @State private var isAddSnipViewPresented = false
     
     var body: some View {
         VStack {
             HStack {
                 //MARK: - Add Category Button
                 Button(action: {
-                    //                    isShowingAddCategorySheet = true
+                    isAddSnipViewPresented = true
                 }) {
                     HStack {
                         Image(systemName: "plus.circle.fill")
@@ -35,6 +36,9 @@ struct SnipsView: View {
             
         }
         .navigationBarTitle(categoryName, displayMode: .large)
+        .sheet(isPresented: $isAddSnipViewPresented) {
+                   AddSnipView(isPresented: $isAddSnipViewPresented)
+            }
         
     }
 }
