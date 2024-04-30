@@ -6,6 +6,7 @@ struct SnipsView: View {
     @State private var snips: [Snip] = []
     @State private var copiedSnipIndex: Int? // Track the index of the copied snip
     @Environment(\.colorScheme) var colorScheme
+    @State private var searchText = ""
     
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -46,8 +47,8 @@ struct SnipsView: View {
             
             // List view to display the snips with proper separation
             List {
-                ForEach(snips.indices, id: \.self) { index in
-                    let snip = snips[index]
+                ForEach(filteredSnips.indices, id: \.self) { index in
+                    let snip = filteredSnips[index]
                     VStack(alignment: .leading, spacing: 10) { // Increase spacing between title, code, and date
                         Text(snip.title)
                             .font(.headline)
@@ -103,6 +104,7 @@ struct SnipsView: View {
                     .onTapGesture {} // Empty gesture to prevent button actions on tapping the list item
                 }
             }
+            .searchable(text: $searchText)
             .onAppear {
                 fetchSnips()
             }
@@ -117,6 +119,14 @@ struct SnipsView: View {
                         fetchSnips()
                     }
                 }
+        }
+    }
+    
+    private var filteredSnips: [Snip] {
+        if searchText.isEmpty {
+            return snips
+        } else {
+            return snips.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
         }
     }
     
