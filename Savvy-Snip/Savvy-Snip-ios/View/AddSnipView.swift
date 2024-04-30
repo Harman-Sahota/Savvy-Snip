@@ -2,13 +2,13 @@ import SwiftUI
 import Highlightr
 
 struct HighlightedCodeView: UIViewRepresentable {
-    @Binding var code: String
+    var code: String
     let colorScheme: ColorScheme // Define colorScheme as a parameter
     
     let highlightr: Highlightr
     
-    init(code: Binding<String>, colorScheme: ColorScheme) { // Add colorScheme as a parameter
-        self._code = code
+    init(code: String, colorScheme: ColorScheme) { // Add colorScheme as a parameter
+        self.code = code
         self.colorScheme = colorScheme // Assign colorScheme
         self.highlightr = Highlightr()!
         let themeName = colorScheme == .dark ? "atom-one-dark" : "mono-blue"
@@ -96,7 +96,7 @@ struct AddSnipView: View {
                     .foregroundColor(Color.primary)
                 
                 // Display the highlighted code in real-time
-                HighlightedCodeView(code: $code, colorScheme: colorScheme) // Pass colorScheme
+                HighlightedCodeView(code: code, colorScheme: colorScheme) // Pass colorScheme
                     .frame(maxWidth: .infinity, minHeight: 200) // Set a minHeight for the HighlightedCodeView
                     .background(Color.clear)
                     .cornerRadius(10)

@@ -115,6 +115,20 @@ struct UserProfile {
     
 }
 
+//MARK: - snips struct
+struct Snip: Hashable {
+    let id = UUID()
+    var title: String
+    var code: String
+    var timestamp: Timestamp // Add timestamp property
+    
+    init(title: String, code: String, timestamp: Timestamp) {
+        self.title = title
+        self.code = code
+        self.timestamp = timestamp
+    }
+}
+
 //MARK: - protocol for dependency injection
 
 protocol AuthManagerProtocol {
@@ -418,9 +432,14 @@ extension AuthManager {
             
             // Once you have the category ID, you can add the snip to the category's collection
             let categoryRef = userRef.collection("categories").document(categoryID)
+            
+            // Get current timestamp
+            let timestamp = Timestamp(date: Date())
+            
             let snipData: [String: Any] = [
                 "title": title,
-                "code": code
+                "code": code,
+                "timestamp": timestamp // Add timestamp to snip data
             ]
             
             categoryRef.collection("snips").addDocument(data: snipData) { error in
@@ -434,6 +453,62 @@ extension AuthManager {
             }
         }
     }
+    
+}
+
+//MARK: - Retrieve Snips
+
+extension AuthManager {
+    func getSnips(forCategoryName categoryName: String, completion: @escaping ([Snip]?, Error?) -> Void) {
+        guard let userID = currentUser?.uid else {
+            print("Error: User is not logged in.")
+            completion(nil, AuthError.userNotLoggedIn)
+            return
+        }
+        
+        let userRef = db.collection("users").document(userID)
+        
+        // First, query for the category with the given name
+        userRef.collection("categories").whereField("categoryName", isEqualTo: categoryName).getDocuments { snapshot, error in
+            if let error = error {
+                print("Error retrieving category: \(error.localizedDescription)")
+                completion(nil, error)
+                return
+            }
+            
+            guard let categoryDocument = snapshot?.documents.first else {
+                print("Error: Category with name '\(categoryName)' not found.")
+                completion(nil, FirestoreError.categoryNotFound)
+                return
+            }
+            
+            let categoryID = categoryDocument.documentID
+            
+            // Once you have the category ID, you can fetch the snips from the category's collection
+            let categoryRef = userRef.collection("categories").document(categoryID).collection("snips")
+            
+            categoryRef.getDocuments { snapshot, error in
+                if let error = error {
+                    print("Error retrieving snips: \(error.localizedDescription)")
+                    completion(nil, error)
+                    return
+                }
+                
+                var snips: [Snip] = []
+                for document in snapshot?.documents ?? [] {
+                    if let title = document.data()["title"] as? String,
+                       let code = document.data()["code"] as? String,
+                       let timestamp = document.data()["timestamp"] as? Timestamp {
+                        let snip = Snip(title: title, code: code, timestamp: timestamp)
+                        snips.append(snip)
+                    }
+                }
+                
+                completion(snips, nil)
+            }
+        }
+    }
+    
 }
 
 

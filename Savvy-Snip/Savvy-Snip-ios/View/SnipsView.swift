@@ -3,12 +3,19 @@ import SwiftUI
 struct SnipsView: View {
     let categoryName: String
     @State private var isAddSnipViewPresented = false
-    @State private var selectedCategoryName: String?
-   
+    @State private var snips: [Snip] = []
+    @State private var copiedSnipIndex: Int? // Track the index of the copied snip
+    @Environment(\.colorScheme) var colorScheme
+    
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, MMMM d yyyy 'at' h:mm a"
+        return formatter
+    }()
+    
     init(categoryName: String) {
-          self.categoryName = categoryName
-          _selectedCategoryName = State(initialValue: categoryName)
-      }
+        self.categoryName = categoryName
+    }
     
     var body: some View {
         VStack {
@@ -31,26 +38,122 @@ struct SnipsView: View {
                     .background(Color.blue)
                     .cornerRadius(8)
                     .padding(.horizontal)
-                    .padding(.vertical, 2)
+                    .padding(.vertical, 10) // Increase vertical padding for the button
                 }
-                
             }
             .padding(.horizontal)
-            .padding(.top, 10)
+            .padding(.top, 20) // Increase top padding
+            
+            // List view to display the snips with proper separation
+            List {
+                ForEach(snips.indices, id: \.self) { index in
+                    let snip = snips[index]
+                    VStack(alignment: .leading, spacing: 10) { // Increase spacing between title, code, and date
+                        Text(snip.title)
+                            .font(.headline)
+                        
+                        // Use the HighlightedCodeView to display the code snippet with syntax highlighting
+                        HighlightedCodeView(code: String(snip.code.prefix(200)), colorScheme: colorScheme) // Display only the first 200 characters
+                            .frame(height: 100) // Adjust height as needed
+                            .cornerRadius(8)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.gray, lineWidth: 1)
+                            )
+                        
+                        HStack {
+                            Text(dateFormatter.string(from: snip.timestamp.dateValue()))
+                                .font(.caption)
+                                .foregroundColor(Color.gray)
+                            
+                            Spacer()
+                            
+                            // Share Button
+                            Button(action: {
+                                print("Share button tapped for index \(index)")
+                                shareSnip(snip)
+                            }) {
+                                Image(systemName: "square.and.arrow.up")
+                                    .foregroundColor(.blue)
+                                    .font(.system(size: 20))
+                                    .padding(8)
+                                    .background(Color.clear)
+                                    .cornerRadius(8)
+                            }
+                            .contentShape(Rectangle())
+                            .buttonStyle(PlainButtonStyle()) // Use PlainButtonStyle to remove button styling
+                            
+                            // Copy Button
+                            Button(action: {
+                                print("Copy button tapped for index \(index)")
+                                copyToClipboard(String(snip.code), index: index)
+                            }) {
+                                Image(systemName: copiedSnipIndex == index ? "checkmark.circle.fill" : "doc.on.doc")
+                                    .foregroundColor(copiedSnipIndex == index ? .green : .blue)
+                                    .font(.system(size: 20))
+                                    .padding(8)
+                                    .background(Color.clear)
+                                    .cornerRadius(8)
+                            }
+                            .contentShape(Rectangle())
+                            .buttonStyle(PlainButtonStyle()) // Use PlainButtonStyle to remove button styling
+                        }
+                    }
+                    .padding(.vertical, 20) // Increase vertical padding for each list item
+                    .onTapGesture {} // Empty gesture to prevent button actions on tapping the list item
+                }
+            }
+            .onAppear {
+                fetchSnips()
+            }
             
             Spacer()
-            
         }
         .navigationBarTitle(categoryName, displayMode: .large)
         .sheet(isPresented: $isAddSnipViewPresented) {
-            AddSnipView(isPresented: $isAddSnipViewPresented, selectedCategoryName: selectedCategoryName ?? "Sample Category")
+            AddSnipView(isPresented: $isAddSnipViewPresented, selectedCategoryName: categoryName)
+                .onDisappear {
+                    Task {
+                        fetchSnips()
+                    }
+                }
+        }
+    }
+    
+    private func fetchSnips() {
+        // Call the getSnips function to retrieve snips for the current category name
+        AuthManager().getSnips(forCategoryName: categoryName) { result, error in
+            if let error = error {
+                // Handle error
+                print("Error fetching snips: \(error.localizedDescription)")
+            } else if let snips = result {
+                // Sort snips by timestamp in descending order
+                self.snips = snips.sorted(by: { $0.timestamp.dateValue() > $1.timestamp.dateValue() })
+            }
+        }
+    }
+    
+    // Function to share snip
+    private func shareSnip(_ snip: Snip) {
+        let activityViewController = UIActivityViewController(activityItems: [snip.code], applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    // Function to copy snip to clipboard
+    private func copyToClipboard(_ code: String, index: Int) {
+        UIPasteboard.general.string = code
+        copiedSnipIndex = index // Update the index of the copied snip
+        
+        // Reset copiedSnipIndex after a delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            copiedSnipIndex = nil
         }
     }
 }
 
 struct SnipsView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack{
+        NavigationStack {
             SnipsView(categoryName: "Sample Category")
         }
     }
