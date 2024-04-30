@@ -3,6 +3,12 @@ import SwiftUI
 struct SnipsView: View {
     let categoryName: String
     @State private var isAddSnipViewPresented = false
+    @State private var selectedCategoryName: String?
+   
+    init(categoryName: String) {
+          self.categoryName = categoryName
+          _selectedCategoryName = State(initialValue: categoryName)
+      }
     
     var body: some View {
         VStack {
@@ -37,9 +43,8 @@ struct SnipsView: View {
         }
         .navigationBarTitle(categoryName, displayMode: .large)
         .sheet(isPresented: $isAddSnipViewPresented) {
-                   AddSnipView(isPresented: $isAddSnipViewPresented)
-            }
-        
+            AddSnipView(isPresented: $isAddSnipViewPresented, selectedCategoryName: selectedCategoryName ?? "Sample Category")
+        }
     }
 }
 
@@ -47,8 +52,6 @@ struct SnipsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
             SnipsView(categoryName: "Sample Category")
-                .previewLayout(.sizeThatFits)
-                .padding()
         }
     }
 }

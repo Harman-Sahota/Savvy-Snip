@@ -255,8 +255,8 @@ struct Category:Identifiable, Equatable{
     var order: Int
     
     static func == (lhs: Category, rhs: Category) -> Bool {
-            return lhs.id == rhs.id
-        }
+        return lhs.id == rhs.id
+    }
 }
 
 //MARK: - Save category data - firestore db
@@ -372,20 +372,70 @@ extension AuthManager {
     }
     
     func updateCategoryName(categoryId: String, newName: String) async throws {
-           guard let currentUser = Auth.auth().currentUser else {
-               throw AuthError.userNotLoggedIn
-           }
-           
-           let userRef = db.collection("users").document(currentUser.uid)
-           let categoryRef = userRef.collection("categories").document(categoryId)
-           
-           do {
-               try await categoryRef.updateData(["categoryName": newName])
-           } catch {
-               throw FirestoreError.firestoreError(description: error.localizedDescription)
-           }
-       }
+        guard let currentUser = Auth.auth().currentUser else {
+            throw AuthError.userNotLoggedIn
+        }
+        
+        let userRef = db.collection("users").document(currentUser.uid)
+        let categoryRef = userRef.collection("categories").document(categoryId)
+        
+        do {
+            try await categoryRef.updateData(["categoryName": newName])
+        } catch {
+            throw FirestoreError.firestoreError(description: error.localizedDescription)
+        }
+    }
 }
+
+
+//MARK: - Save Snips
+
+extension AuthManager {
+    func saveSnip(categoryName: String, title: String, code: String, completion: @escaping (Error?) -> Void) {
+        guard let userID = currentUser?.uid else {
+            print("Error: User is not logged in.")
+            completion(AuthError.userNotLoggedIn)
+            return
+        }
+        
+        let userRef = db.collection("users").document(userID)
+        
+        // First, query for the category with the given name
+        userRef.collection("categories").whereField("categoryName", isEqualTo: categoryName).getDocuments { snapshot, error in
+            if let error = error {
+                print("Error retrieving category: \(error.localizedDescription)")
+                completion(error)
+                return
+            }
+            
+            guard let categoryDocument = snapshot?.documents.first else {
+                print("Error: Category with name '\(categoryName)' not found.")
+                completion(FirestoreError.categoryNotFound)
+                return
+            }
+            
+            let categoryID = categoryDocument.documentID
+            
+            // Once you have the category ID, you can add the snip to the category's collection
+            let categoryRef = userRef.collection("categories").document(categoryID)
+            let snipData: [String: Any] = [
+                "title": title,
+                "code": code
+            ]
+            
+            categoryRef.collection("snips").addDocument(data: snipData) { error in
+                if let error = error {
+                    print("Error adding snip: \(error.localizedDescription)")
+                    completion(error)
+                } else {
+                    print("Snip added successfully!")
+                    completion(nil)
+                }
+            }
+        }
+    }
+}
+
 
 //MARK: - errors dictionary
 
@@ -407,4 +457,5 @@ enum AuthError: Error {
 enum FirestoreError: Error {
     case firestoreError(description: String)
     case deleteFailed(String)
+    case categoryNotFound
 }
