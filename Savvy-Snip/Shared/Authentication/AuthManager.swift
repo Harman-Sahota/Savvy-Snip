@@ -519,6 +519,70 @@ extension AuthManager {
     }
 }
 
+//MARK: - Edit Snip
+
+extension AuthManager {
+    func updateSnip(snip: Snip, categoryName: String, completion: @escaping (Error?) -> Void) {
+        guard let userID = currentUser?.uid else {
+            print("Error: User is not logged in.")
+            completion(AuthError.userNotLoggedIn)
+            return
+        }
+        
+        let userRef = db.collection("users").document(userID)
+        
+        // First, query for the category with the given name
+        userRef.collection("categories").whereField("categoryName", isEqualTo: categoryName).getDocuments { snapshot, error in
+            if let error = error {
+                print("Error retrieving category: \(error.localizedDescription)")
+                completion(error)
+                return
+            }
+            
+            guard let categoryDocument = snapshot?.documents.first else {
+                print("Error: Category with name '\(categoryName)' not found.")
+                completion(FirestoreError.categoryNotFound)
+                return
+            }
+            
+            let categoryID = categoryDocument.documentID
+            
+            // Once you have the category ID, you can update the snip in the category's collection
+            let categoryRef = userRef.collection("categories").document(categoryID).collection("snips")
+            
+            // Query for the snip with the given timestamp
+            categoryRef.whereField("timestamp", isEqualTo: snip.timestamp).getDocuments { snapshot, error in
+                if let error = error {
+                    print("Error retrieving snip: \(error.localizedDescription)")
+                    completion(error)
+                    return
+                }
+                
+                guard let snipDocument = snapshot?.documents.first else {
+                    print("Error: Snip not found.")
+                    completion(FirestoreError.snipNotFound)
+                    return
+                }
+                
+                // Once you have the snip document, update it with the new data
+                snipDocument.reference.updateData([
+                    "title": snip.title,
+                    "code": snip.code
+                ]) { error in
+                    if let error = error {
+                        print("Error updating snip: \(error.localizedDescription)")
+                        completion(error)
+                    } else {
+                        print("Snip updated successfully!")
+                        completion(nil)
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 
 //MARK: - Retrieve Snips
 

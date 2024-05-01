@@ -34,13 +34,16 @@ struct HighlightedCodeView: UIViewRepresentable {
     }
 }
 
+import SwiftUI
+import Highlightr
+
 struct AddSnipView: View {
     @Binding var isPresented: Bool
     @State private var title: String = ""
     @State private var code: String = ""
     @State private var showError: Bool = false
     let selectedCategoryName: String
-    @Environment(\.colorScheme) var colorScheme // Add colorScheme environment variable
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         ScrollView {
@@ -49,21 +52,24 @@ struct AddSnipView: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding(.top, 20)
-                    .foregroundColor(Color.primary)
+                    .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                    .onAppear {
+                        print("Color scheme: \(colorScheme)")
+                    }
                 
                 TextField("Title", text: $title)
                     .padding()
-                    .foregroundColor(.primary)
                     .font(.body)
                     .background(Color(UIColor.systemBackground))
                     .cornerRadius(10)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
-                    .frame(maxWidth: .infinity)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.gray, lineWidth: 1)
                     )
+                    .foregroundColor(Color.gray)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    .frame(maxWidth: .infinity)
                 
                 VStack(alignment: .leading) {
                     Text("Code")
@@ -96,7 +102,7 @@ struct AddSnipView: View {
                     .foregroundColor(Color.primary)
                 
                 // Display the highlighted code in real-time
-                HighlightedCodeView(code: code, colorScheme: colorScheme) // Pass colorScheme
+                HighlightedCodeView(code: code, colorScheme: colorScheme)
                     .frame(maxWidth: .infinity, minHeight: 200) // Set a minHeight for the HighlightedCodeView
                     .background(Color.clear)
                     .cornerRadius(10)
@@ -146,7 +152,9 @@ struct AddSnipView_Previews: PreviewProvider {
             AddSnipView(isPresented: .constant(true), selectedCategoryName: "Sample Category")
                 .previewLayout(.sizeThatFits)
                 .padding()
-                .environment(\.colorScheme, .dark) // Preview in dark mode
+                .environment(\.colorScheme, .light) // Preview in light mode
         }
     }
 }
+
+

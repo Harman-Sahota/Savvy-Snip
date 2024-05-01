@@ -48,6 +48,7 @@
 		518F39212BC5D67800A8CB08 /* FireBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518F391F2BC5D67800A8CB08 /* FireBaseManager.swift */; };
 		518F39252BC5DBA000A8CB08 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518F39242BC5DBA000A8CB08 /* AuthManager.swift */; };
 		518F39262BC5DBA000A8CB08 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518F39242BC5DBA000A8CB08 /* AuthManager.swift */; };
+		51A22FAC2BE2F43C0094A66D /* EditSnipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A22FAB2BE2F43C0094A66D /* EditSnipView.swift */; };
 		51ACB0752BDD74F500F053B7 /* Highlightr in Frameworks */ = {isa = PBXBuildFile; productRef = 51ACB0742BDD74F500F053B7 /* Highlightr */; };
 		51ACB0772BDD751500F053B7 /* Highlightr in Frameworks */ = {isa = PBXBuildFile; productRef = 51ACB0762BDD751500F053B7 /* Highlightr */; };
 		51AF15502BD2BECF001F5E48 /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AF154F2BD2BECF001F5E48 /* AddCategoryView.swift */; };
@@ -102,6 +103,7 @@
 		518F390B2BC5D42200A8CB08 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		518F391F2BC5D67800A8CB08 /* FireBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseManager.swift; sourceTree = "<group>"; };
 		518F39242BC5DBA000A8CB08 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		51A22FAB2BE2F43C0094A66D /* EditSnipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSnipView.swift; sourceTree = "<group>"; };
 		51AF154F2BD2BECF001F5E48 /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
 		51DCFA7C2BD5844700C5AB89 /* RenameCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenameCategoryView.swift; sourceTree = "<group>"; };
 		51E1271A2BD2F830009DEAB0 /* SnipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnipsView.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				51DCFA7C2BD5844700C5AB89 /* RenameCategoryView.swift */,
 				51888C912BDD5840003EEFED /* AddSnipView.swift */,
 				510D8ECD2BE2A7C800216F44 /* SnipDetailView.swift */,
+				51A22FAB2BE2F43C0094A66D /* EditSnipView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				51DCFA7D2BD5844700C5AB89 /* RenameCategoryView.swift in Sources */,
 				51011E412BC438EB00E39B80 /* ContentView.swift in Sources */,
 				510D8ECE2BE2A7C800216F44 /* SnipDetailView.swift in Sources */,
+				51A22FAC2BE2F43C0094A66D /* EditSnipView.swift in Sources */,
 				51011E3F2BC438EB00E39B80 /* Savvy_Snip_iosApp.swift in Sources */,
 				51AF15502BD2BECF001F5E48 /* AddCategoryView.swift in Sources */,
 				515C59D42BC84E6300930744 /* RootView.swift in Sources */,
