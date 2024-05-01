@@ -143,7 +143,7 @@ protocol AuthManagerProtocol {
 
 //MARK: - Class that handles all firebase methods
 
-final class AuthManager: AuthManagerProtocol{
+final class AuthManager: AuthManagerProtocol,ObservableObject {
     
     private var currentUser: User? {
         return Auth.auth().currentUser
@@ -456,6 +456,70 @@ extension AuthManager {
     
 }
 
+//MARK: - Delete Snip
+
+extension AuthManager {
+    func deleteSnip(categoryName: String, title: String, code: String, timestamp: Timestamp, completion: @escaping (Error?) -> Void) {
+        guard let userID = currentUser?.uid else {
+            print("Error: User is not logged in.")
+            completion(AuthError.userNotLoggedIn)
+            return
+        }
+        
+        let userRef = db.collection("users").document(userID)
+        
+        // First, query for the category with the given name
+        userRef.collection("categories").whereField("categoryName", isEqualTo: categoryName).getDocuments { snapshot, error in
+            if let error = error {
+                print("Error retrieving category: \(error.localizedDescription)")
+                completion(error)
+                return
+            }
+            
+            guard let categoryDocument = snapshot?.documents.first else {
+                print("Error: Category with name '\(categoryName)' not found.")
+                completion(FirestoreError.categoryNotFound)
+                return
+            }
+            
+            let categoryID = categoryDocument.documentID
+            
+            // Once you have the category ID, you can delete the snip from the category's collection
+            let categoryRef = userRef.collection("categories").document(categoryID).collection("snips")
+            
+            // Query for the snip with the given title, code, and timestamp
+            categoryRef.whereField("title", isEqualTo: title)
+                .whereField("code", isEqualTo: code)
+                .whereField("timestamp", isEqualTo: timestamp)
+                .getDocuments { snapshot, error in
+                    if let error = error {
+                        print("Error retrieving snip: \(error.localizedDescription)")
+                        completion(error)
+                        return
+                    }
+                    
+                    guard let snipDocument = snapshot?.documents.first else {
+                        print("Error: Snip not found.")
+                        completion(FirestoreError.snipNotFound)
+                        return
+                    }
+                    
+                    // Once you have the snip document, you can delete it
+                    snipDocument.reference.delete { error in
+                        if let error = error {
+                            print("Error deleting snip: \(error.localizedDescription)")
+                            completion(error)
+                        } else {
+                            print("Snip deleted successfully!")
+                            completion(nil)
+                        }
+                    }
+                }
+        }
+    }
+}
+
+
 //MARK: - Retrieve Snips
 
 extension AuthManager {
@@ -533,4 +597,5 @@ enum FirestoreError: Error {
     case firestoreError(description: String)
     case deleteFailed(String)
     case categoryNotFound
+    case snipNotFound
 }

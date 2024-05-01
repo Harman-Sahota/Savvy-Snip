@@ -1,5 +1,4 @@
 import SwiftUI
-import Combine
 
 //MARK: - Category View Model
 @MainActor
@@ -78,6 +77,7 @@ final class CategoryViewModel: ObservableObject {
         showErrorAlert = false
         errorMessage = "An error occurred. Please try again."
     }
+    
     func filteredCategories(for searchText: String) -> [Category] {
         if searchText.isEmpty {
             return categories
@@ -135,26 +135,32 @@ struct CategoryView: View {
             //MARK: - Main List view of categories w/ renaming and dragging capability
             
             List {
-                ForEach(viewModel.filteredCategories(for: searchText), id: \.id) { category in
-                    NavigationLink(destination: SnipsView(categoryName: category.name)) {
-                        Text(category.name)
-                            .padding(.vertical, 8)
-                    }
-                    .contextMenu {
-                        Button(action: {
-                            // Handle rename action
+                if viewModel.categories.isEmpty {
+                    Text("No Categories Found.")
+                        .foregroundColor(.gray)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                } else {
+                    ForEach(viewModel.filteredCategories(for: searchText), id: \.id) { category in
+                        NavigationLink(destination: SnipsView(categoryName: category.name)) {
+                            Text(category.name)
+                                .padding(.vertical, 8)
+                        }
+                        .contextMenu {
+                            Button(action: {
+                                // Handle rename action
+                                selectedCategory = category
+                                isShowingRenameSheet = true
+                            }) {
+                                Label("Rename", systemImage: "pencil")
+                            }
+                        }
+                        .onTapGesture {
                             selectedCategory = category
-                            isShowingRenameSheet = true
-                        }) {
-                            Label("Rename", systemImage: "pencil")
                         }
                     }
-                    .onTapGesture {
-                        selectedCategory = category
-                    }
+                    .onDelete(perform: viewModel.deleteCategory)
+                    .onMove(perform: viewModel.reorderCategories)
                 }
-                .onDelete(perform: viewModel.deleteCategory)
-                .onMove(perform: viewModel.reorderCategories)
             }
             .searchable(text: $searchText)
             .sheet(isPresented: $isShowingRenameSheet) {
@@ -170,13 +176,10 @@ struct CategoryView: View {
                     }
                 }
             }
-
-            
-            //MARK: - Nav title and items
-            
-            .navigationBarTitle("Your Categories", displayMode: .large)
-            .navigationBarItems(trailing:
-                                    Button(action: {
+        }
+        .navigationBarTitle("Your Categories", displayMode: .large)
+        .navigationBarItems(trailing:
+            Button(action: {
                 viewModel.logOut()
                 showSignInView = true
             }) {
@@ -185,28 +188,27 @@ struct CategoryView: View {
                     .padding(.vertical, 4)
                     .padding(.horizontal, 12)
             }
+        )
+        .alert(isPresented: $viewModel.showErrorAlert) {
+            Alert(
+                title: Text("Error"),
+                message: Text(viewModel.errorMessage),
+                dismissButton: .default(Text("OK"))
             )
-            .alert(isPresented: $viewModel.showErrorAlert) {
-                Alert(
-                    title: Text("Error"),
-                    message: Text(viewModel.errorMessage),
-                    dismissButton: .default(Text("OK"))
-                )
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+        Button(action: {
+            Task {
+                await viewModel.deleteAccount()
+                showSignInView = true
             }
-            .navigationViewStyle(StackNavigationViewStyle())
-            Button(action: {
-                Task{
-                    await viewModel.deleteAccount()
-                    showSignInView = true
-                }
-            }) {
-                Text("Delete Account")
-                    .foregroundColor(.red)
-                    .padding(.vertical, 4)
-                    .padding(.horizontal, 12)
-                    .background(Color.clear)
-                    .padding()
-            }
+        }) {
+            Text("Delete Account")
+                .foregroundColor(.red)
+                .padding(.vertical, 4)
+                .padding(.horizontal, 12)
+                .background(Color.clear)
+                .padding()
         }
         .contentShape(Rectangle()) // Ensure the VStack is tappable
         .id(loginState)
@@ -225,7 +227,6 @@ struct CategoryView: View {
     }
 }
 
-
 //MARK: - Preview
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
@@ -234,5 +235,3 @@ struct CategoryView_Previews: PreviewProvider {
         }
     }
 }
-
-

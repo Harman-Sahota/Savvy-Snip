@@ -20,7 +20,7 @@ final class AuthViewModel: ObservableObject{
 
 struct ContentView: View {
     @StateObject private var viewModel = AuthViewModel()
-    
+
     @State private var registrationActive: Bool = false
     @State private var loginActive: Bool = false
     @State private var hideBackButtonForHome: Bool = false
