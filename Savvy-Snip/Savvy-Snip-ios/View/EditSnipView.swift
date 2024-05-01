@@ -8,6 +8,7 @@ struct EditSnipView: View {
     @State private var editedTitle: String
     @State private var editedCode: String
     @State private var isEditing: Bool = false
+    
     let snip: Snip
     let categoryName: String
     let onComplete: () -> Void

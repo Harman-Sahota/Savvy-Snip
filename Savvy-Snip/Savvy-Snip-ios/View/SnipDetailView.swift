@@ -9,7 +9,7 @@ struct SnipDetailView: View {
     @Environment(\.colorScheme) var colorScheme
     private let authManager = AuthManager()
     @Environment(\.presentationMode) var presentationMode
-
+    @State private var isEditSheetPresented = false
     
     @State private var isMenuExpanded = false
     
@@ -85,7 +85,7 @@ struct SnipDetailView: View {
                             .background(colorScheme == .dark ? Color.white : Color.black)
                         
                         Button("Edit") {
-                            // Add functionality for editing
+                            isEditSheetPresented = true
                         }
                         .foregroundColor(.green)
                         .frame(maxWidth: .infinity)
@@ -125,6 +125,14 @@ struct SnipDetailView: View {
                         .cornerRadius(8)
                         .padding(.bottom, 8)
                 }
+            }
+        }
+        .sheet(isPresented: $isEditSheetPresented, onDismiss: {
+            // Handle the onDismiss action here
+            presentationMode.wrappedValue.dismiss()
+        }) {
+            EditSnipView(snip: Snip(title: title, code: code, timestamp: timestamp), categoryName: categoryName) {
+                
             }
         }
     }

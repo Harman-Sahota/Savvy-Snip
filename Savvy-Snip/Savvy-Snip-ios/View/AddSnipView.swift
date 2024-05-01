@@ -53,9 +53,7 @@ struct AddSnipView: View {
                     .fontWeight(.bold)
                     .padding(.top, 20)
                     .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
-                    .onAppear {
-                        print("Color scheme: \(colorScheme)")
-                    }
+              
                 
                 TextField("Title", text: $title)
                     .padding()
