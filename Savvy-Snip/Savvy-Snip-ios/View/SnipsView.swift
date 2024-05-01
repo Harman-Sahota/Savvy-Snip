@@ -39,7 +39,7 @@ struct SnipsView: View {
                     .background(Color.blue)
                     .cornerRadius(8)
                     .padding(.horizontal)
-                    .padding(.vertical, 10) // Increase vertical padding for the button
+                    .padding(.vertical, 10)
                 }
             }
             .padding(.horizontal)
@@ -49,66 +49,67 @@ struct SnipsView: View {
             List {
                 ForEach(filteredSnips.indices, id: \.self) { index in
                     let snip = filteredSnips[index]
-                    VStack(alignment: .leading, spacing: 10) { // Increase spacing between title, code, and date
-                        Text(snip.title)
-                            .font(.headline)
-                        
-                        // Use the HighlightedCodeView to display the code snippet with syntax highlighting
-                        HighlightedCodeView(code: String(snip.code.prefix(200)), colorScheme: colorScheme) // Display only the first 200 characters
-                            .frame(height: 100) // Adjust height as needed
-                            .cornerRadius(8)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.gray, lineWidth: 1)
-                            )
-                        
-                        HStack {
-                            Text(dateFormatter.string(from: snip.timestamp.dateValue()))
-                                .font(.caption)
-                                .foregroundColor(Color.gray)
+                    NavigationLink(destination: SnipDetailView(title: filteredSnips[index].title, code: String(filteredSnips[index].code), timestamp: filteredSnips[index].timestamp.dateValue())) {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text(snip.title)
+                                .font(.headline)
                             
-                            Spacer()
+                            HighlightedCodeView(code: String(snip.code.prefix(200)), colorScheme: colorScheme)
+                                .padding()
+                                .frame(height: 100)
+                                .cornerRadius(8)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color.gray, lineWidth: 1)
+                                )
                             
-                            // Share Button
-                            Button(action: {
-                                print("Share button tapped for index \(index)")
-                                shareSnip(snip)
-                            }) {
-                                Image(systemName: "square.and.arrow.up")
-                                    .foregroundColor(.blue)
-                                    .font(.system(size: 20))
-                                    .padding(8)
-                                    .background(Color.clear)
-                                    .cornerRadius(8)
+                            HStack {
+                                Text(dateFormatter.string(from: snip.timestamp.dateValue()))
+                                    .font(.caption)
+                                    .foregroundColor(Color.gray)
+                                
+                                Spacer()
+                                
+                                // Share Button
+                                Button(action: {
+                                    print("Share button tapped for index \(index)")
+                                    shareSnip(snip)
+                                }) {
+                                    Image(systemName: "square.and.arrow.up")
+                                        .foregroundColor(.blue)
+                                        .font(.system(size: 20))
+                                        .padding(8)
+                                        .background(Color.clear)
+                                        .cornerRadius(8)
+                                }
+                                .contentShape(Rectangle())
+                                .buttonStyle(PlainButtonStyle()) // Use PlainButtonStyle to remove button styling
+                                
+                                // Copy Button
+                                Button(action: {
+                                    print("Copy button tapped for index \(index)")
+                                    copyToClipboard(String(snip.code), index: index)
+                                }) {
+                                    Image(systemName: copiedSnipIndex == index ? "checkmark.circle.fill" : "doc.on.doc")
+                                        .foregroundColor(copiedSnipIndex == index ? .green : .blue)
+                                        .font(.system(size: 20))
+                                        .padding(8)
+                                        .background(Color.clear)
+                                        .cornerRadius(8)
+                                }
+                                .contentShape(Rectangle())
+                                .buttonStyle(PlainButtonStyle()) // Use PlainButtonStyle to remove button styling
                             }
-                            .contentShape(Rectangle())
-                            .buttonStyle(PlainButtonStyle()) // Use PlainButtonStyle to remove button styling
-                            
-                            // Copy Button
-                            Button(action: {
-                                print("Copy button tapped for index \(index)")
-                                copyToClipboard(String(snip.code), index: index)
-                            }) {
-                                Image(systemName: copiedSnipIndex == index ? "checkmark.circle.fill" : "doc.on.doc")
-                                    .foregroundColor(copiedSnipIndex == index ? .green : .blue)
-                                    .font(.system(size: 20))
-                                    .padding(8)
-                                    .background(Color.clear)
-                                    .cornerRadius(8)
-                            }
-                            .contentShape(Rectangle())
-                            .buttonStyle(PlainButtonStyle()) // Use PlainButtonStyle to remove button styling
                         }
+                        .padding(.vertical, 20) // Increase vertical padding for each list item
+                        .onTapGesture {} // Empty gesture to prevent button actions on tapping the list item
                     }
-                    .padding(.vertical, 20) // Increase vertical padding for each list item
-                    .onTapGesture {} // Empty gesture to prevent button actions on tapping the list item
+                }
+                .searchable(text: $searchText)
+                .onAppear {
+                    fetchSnips()
                 }
             }
-            .searchable(text: $searchText)
-            .onAppear {
-                fetchSnips()
-            }
-            
             Spacer()
         }
         .navigationBarTitle(categoryName, displayMode: .large)
@@ -164,7 +165,7 @@ struct SnipsView: View {
 struct SnipsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SnipsView(categoryName: "Sample Category")
+            SnipsView(categoryName: "Sample Snip")
         }
     }
 }

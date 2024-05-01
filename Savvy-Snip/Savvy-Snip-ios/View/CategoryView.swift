@@ -150,7 +150,6 @@ struct CategoryView: View {
                         }
                     }
                     .onTapGesture {
-                        // Handle normal tap for navigation
                         selectedCategory = category
                     }
                 }
