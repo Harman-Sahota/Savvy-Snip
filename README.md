@@ -2,7 +2,7 @@
 
 ![Savvy Snip Logo](logo.svg)
 
-Last Updated: April 21 2024
+Last Updated: May 2 2024
 
 Welcome to Savvy Snip, your future go-to tool for storing, organizing, and accessing code snippets with ease. Whether you're a seasoned developer or just getting started, Savvy Snip is designed to streamline your workflow and boost your coding efficiency. Say goodbye to repetitive Google searches and hello to a seamless coding experience.
 
@@ -75,8 +75,9 @@ Please note that the features mentioned above represent the MVP (Minimum Viable 
     <img src="Mockups/Iphone-light-mode/lightmode-screen2.png" alt="Light Mode Screen 2" width="250">
 </div>
 
-#### Macbook Menu Bar Attachment
-<img src="Mockups/mac/macscreen.png" alt="Macbook menu bar design" width="900">
+#### Macbook version
+
+### This macbook version will be running the ios version using Mac Catalyt feature, this provides the same functionality and experiences across platforms. 
 
 ## Sign Up for the Waitlist
 
